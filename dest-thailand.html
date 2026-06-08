@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thailand — Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#181e83;--sky:#788ddc;--white:#ffffff;--cream:#f9f7f2;--dark:#0c1147;--gold:#c8a96e;--light-sky:#dde4f5;--text-dark:#1a1a2e;--text-muted:#6b7280;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body { 
+  font-family: 'DM Sans', sans-serif; 
+  color: var(--text-dark); 
+  background: var(--white); 
+  overflow-x: hidden; 
+  cursor: default; 
+}
+/* NAV */
+nav { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  z-index: 1000; 
+  padding: 0 4%; 
+  display: flex; 
+  min-width: 100%;
+  align-items: center; 
+  justify-content: space-between; 
+  height: 76px; 
+  background: transparent; 
+  transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s; 
+}
+nav.scrolled { 
+  background: rgba(15,20,100,0.35); 
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+  border-bottom: 1px solid rgba(255,255,255,0.08); 
+}
+.nav-logo { 
+  cursor: default;
+  margin-top: 7px;
+  margin-left: -50px; 
+}
+.nav-logo img { 
+  height: 50px; 
+  -ms-transform-origin-y: contain;
+}
+.nav-logo-text { 
+  color: white; 
+  font-weight: 800; 
+  font-size: 1.1rem; 
+  letter-spacing: 0.08em; 
+}
+.nav-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 40px; 
+}
+.nav-links { 
+  display: flex; 
+  gap: 36px; 
+  list-style: none; 
+  align-items: center; 
+}
+.nav-links a { 
+  color: var(--white); 
+  text-decoration: none; 
+  font-size: 15px; 
+  font-weight: 1000; 
+  letter-spacing: 0.14em; 
+  text-transform: uppercase; 
+  opacity: 0.85; 
+  transition: opacity 0.2s; 
+  white-space: nowrap; 
+}
+.nav-links a:hover, .nav-links a.active { 
+  opacity: 1; 
+}
+.nav-cta { 
+  background: transparent !important; 
+  color: var(--white) !important; 
+  border: 1.5px solid rgba(255,255,255,0.75) !important; 
+  padding: 10px 28px !important; 
+  border-radius: 100px !important; 
+  font-size: 15px !important; 
+  font-weight: 1000 !important; 
+  letter-spacing: 0.12em !important; 
+  text-transform: uppercase !important; 
+  opacity: 1 !important; 
+  transition: background 0.25s, border-color 0.25s !important; 
+}
+.nav-cta:hover { 
+  background: rgba(255,255,255,0.15) !important; 
+  border-color: white !important; 
+}
+.hamburger { 
+  display: none; 
+  flex-direction: column; 
+  gap: 5px; 
+  cursor: default; 
+  padding: 8px; 
+}
+.hamburger span { 
+  width: 24px; 
+  height: 1.5px; 
+  background: white; 
+  display: block; 
+  transition: all 0.3s; 
+}
+
+
+.dest-hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;padding:0 5% 80px;overflow:hidden;}
+.dest-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1920&q=85&auto=format&fit=crop');background-size:cover;background-position:center;animation:slowZoom 20s ease-in-out infinite alternate;}
+@keyframes slowZoom{from{transform:scale(1.04)}to{transform:scale(1.09)}}
+.dest-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,14,80,0.88) 0%,rgba(8,14,80,0.25) 55%,transparent 100%);}
+.dest-hero-content{position:relative;z-index:2;max-width:800px;}
+.breadcrumb{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;cursor:none;}
+.breadcrumb a:hover{color:rgba(255,255,255,0.9);}
+.breadcrumb span{color:rgba(255,255,255,0.25);font-size:12px;}
+.dest-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.dtag{background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);color:white;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid rgba(255,255,255,0.2);}
+.dest-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:400;color:white;line-height:1.05;margin-bottom:16px;opacity:0;animation:fadeUp 0.9s 0.2s ease forwards;}
+.dest-hero-sub{font-size:1.1rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;max-width:560px;opacity:0;animation:fadeUp 0.9s 0.45s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.dest-body{display:grid;grid-template-columns:1fr 360px;gap:60px;padding:80px 5%;max-width:1400px;margin:0 auto;}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--navy);margin-bottom:16px;font-weight:500;}
+.section-label::before{content:'';width:28px;height:1.5px;background:var(--gold);}
+.dest-main h2{font-family:'DM Serif Display',serif;font-size:2.2rem;font-weight:400;color:var(--dark);margin-bottom:16px;}
+.dest-main p{font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:20px;}
+
+.highlights-list{margin-top:32px;display:flex;flex-direction:column;gap:14px;}
+.highlight-row{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--cream);border-radius:4px;}
+.highlight-row-icon{font-size:1.5rem;flex-shrink:0;}
+.highlight-row p{font-size:0.88rem;color:var(--text-dark);line-height:1.6;}
+.highlight-row p b{display:block;font-weight:500;margin-bottom:2px;color:var(--dark);}
+
+.value-banner{margin-top:32px;background:var(--dark);border-radius:6px;padding:28px 32px;display:flex;gap:32px;flex-wrap:wrap;}
+.value-stat{text-align:center;flex:1;min-width:100px;}
+.value-stat .num{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--gold);line-height:1;}
+.value-stat p{font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:4px;letter-spacing:0.05em;}
+
+.itinerary-section{margin-top:48px;}
+.itinerary-section h3{font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400;color:var(--dark);margin-bottom:24px;}
+.day-item{display:flex;gap:24px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(24,30,131,0.08);}
+.day-item:last-child{border-bottom:none;}
+.day-num{flex-shrink:0;width:48px;height:48px;background:var(--light-sky);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.9rem;color:var(--navy);}
+.day-content h4{font-size:1rem;font-weight:500;color:var(--dark);margin-bottom:6px;}
+.day-content p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
+
+.cta-note{margin-top:40px;padding:28px 32px;background:var(--cream);border-radius:6px;border-left:3px solid var(--gold);}
+.cta-note h4{font-size:1rem;font-weight:500;color:var(--dark);margin-bottom:8px;}
+.cta-note p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
+
+.price-card{background:white;border:1px solid rgba(24,30,131,0.12);border-radius:8px;padding:32px;box-shadow:0 8px 32px rgba(24,30,131,0.08);position:sticky;top:100px;}
+.price-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.price-range{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);margin-bottom:4px;}
+.price-note{font-size:0.75rem;color:var(--text-muted);margin-bottom:24px;}
+.best-value-tag{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:600;margin-bottom:16px;}
+.custom-note{background:var(--light-sky);border-radius:4px;padding:14px 16px;margin-bottom:24px;font-size:0.82rem;color:var(--navy);line-height:1.6;}
+.btn-plan{display:block;width:100%;text-align:center;background:var(--navy);color:white;text-decoration:none;padding:16px;border-radius:100px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:background 0.2s;cursor:none;margin-bottom:12px;}
+.btn-plan:hover{background:#242ead;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:white;text-decoration:none;padding:14px;border-radius:100px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:background 0.2s;cursor:none;}
+.btn-wa:hover{background:#1dbd5a;}
+.btn-wa svg{width:16px;height:16px;fill:white;}
+.price-meta{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+.price-meta li{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text-muted);}
+.price-meta li svg{width:14px;height:14px;stroke:var(--sky);fill:none;stroke-width:1.5;flex-shrink:0;}
+
+.cta-band{background:var(--navy);padding:80px 5%;text-align:center;}
+.cta-band h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:white;font-weight:400;margin-bottom:16px;}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,0.6);margin:0 auto 36px;max-width:440px;line-height:1.7;}
+.cta-band-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:white;color:var(--navy);padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:none;text-decoration:none;transition:background 0.2s;}
+.btn-white:hover{background:var(--cream);}
+.btn-outline-white{background:transparent;color:rgba(255,255,255,0.6);border:1.5px solid rgba(255,255,255,0.3);padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:none;text-decoration:none;transition:color 0.2s,border-color 0.2s;}
+.btn-outline-white:hover{color:white;border-color:white;}
+footer{background:#060a2e;padding:40px 5% 24px;}
+.footer-bottom-simple{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom-simple p{font-size:0.75rem;color:rgba(255,255,255,0.25);}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-nav a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;cursor:none;}
+.footer-nav a:hover{color:var(--sky);}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}.dest-body{grid-template-columns:1fr;}.price-card{position:static;}.value-banner{gap:16px;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="D:\Work\Mahaveer Global Escapes\Final Work\MGE Logo.png" alt="MGE" onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+     <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\experiences.html">Experiences</a></li>
+      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\why-us.html">Why Us</a></li>
+      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\about.html">About</a></li>
+      <li><a href="#testimonials">Review</a></li>
+      <li><a href="#plan" class="nav-cta">Plan Your Trip</a></li>
+    </ul>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="dest-hero">
+  <div class="dest-hero-bg"></div>
+  <div class="dest-hero-overlay"></div>
+  <div class="dest-hero-content">
+    <div class="breadcrumb"><a href="experiences.html">Experiences</a><span>/</span><span style="color:rgba(255,255,255,0.7);">Thailand</span></div>
+    <div class="dest-tags"><span class="dtag">Beach</span><span class="dtag">Culture</span><span class="dtag">Best Value</span><span class="dtag">6–10 Days</span></div>
+    <h1>Thailand</h1>
+    <p class="dest-hero-sub">Turquoise bays, gold-draped temples, vibrant street food and a warmth of welcome that makes you want to come back every year.</p>
+  </div>
+</section>
+
+<div class="dest-body">
+  <div class="dest-main">
+    <div class="reveal">
+      <div class="section-label">Overview</div>
+      <h2>Maximum Experience, Remarkable Value</h2>
+      <p>Thailand consistently delivers more per rupee than almost anywhere else on earth. The beaches of Krabi and the Phi Phi Islands are among Asia's most beautiful. Bangkok's food scene is extraordinary. Chiang Mai's temples and night markets are unlike anything you'll find elsewhere.</p>
+      <p>We design Thailand journeys that balance all of it — culture, coast, cuisine and calm — tailored to your travel style and budget. Whether you want a beach-only escape or a full cultural immersion, we shape the trip around you.</p>
+    </div>
+
+    <div class="value-banner reveal">
+      <div class="value-stat"><div class="num">₹40k</div><p>Starting price per person</p></div>
+      <div class="value-stat"><div class="num">6–10</div><p>Ideal trip length (days)</p></div>
+      <div class="value-stat"><div class="num">3</div><p>Regions to explore</p></div>
+      <div class="value-stat"><div class="num">∞</div><p>Budget flexibility</p></div>
+    </div>
+
+    <div class="highlights-list reveal" style="margin-top:32px;">
+      <div class="highlight-row"><div class="highlight-row-icon">🏖️</div><div><p><b>Phi Phi Islands & Maya Bay</b>Day trip by speedboat to the islands that made Thailand famous — crystalline water, limestone cliffs, and absolute beauty.</p></div></div>
+      <div class="highlight-row"><div class="highlight-row-icon">🛕</div><div><p><b>Chiang Mai Temples</b>Doi Suthep at sunrise, Wat Chedi Luang in the old city — ancient temple culture at its most atmospheric.</p></div></div>
+      <div class="highlight-row"><div class="highlight-row-icon">🍜</div><div><p><b>Street Food Experience</b>Bangkok's Chinatown, Chiang Mai's Saturday Night Bazaar, local markets — a food journey through Thailand's most celebrated cuisine.</p></div></div>
+      <div class="highlight-row"><div class="highlight-row-icon">🐘</div><div><p><b>Elephant Sanctuary</b>An ethical elephant experience in Chiang Mai — feeding, bathing and walking with rescued elephants in a natural jungle setting.</p></div></div>
+    </div>
+
+    <div class="itinerary-section reveal">
+      <h3>Sample Itinerary</h3>
+      <div class="day-item"><div class="day-num">1</div><div class="day-content"><h4>Arrival — Bangkok</h4><p>Land in Bangkok, hotel check-in. Evening at Asiatique riverside market — street food, shopping, river views.</p></div></div>
+      <div class="day-item"><div class="day-num">2</div><div class="day-content"><h4>Bangkok Temples & Streets</h4><p>Grand Palace and Wat Phra Kaew (Emerald Buddha), Wat Arun by the river, Chinatown for evening street food and jade shopping.</p></div></div>
+      <div class="day-item"><div class="day-num">3</div><div class="day-content"><h4>Flight to Chiang Mai</h4><p>Morning flight north. Old city temples in the afternoon. Evening at the Sunday Walking Street market — local crafts, food, lanterns.</p></div></div>
+      <div class="day-item"><div class="day-num">4</div><div class="day-content"><h4>Elephant Sanctuary Day</h4><p>Full-day ethical elephant experience — feed, bathe and walk with rescued elephants in their natural jungle environment. Unforgettable.</p></div></div>
+      <div class="day-item"><div class="day-num">5</div><div class="day-content"><h4>Fly to Krabi / Phuket</h4><p>Afternoon flight south to the coast. Check into your beachfront hotel. Sunset dinner with your feet in the sand.</p></div></div>
+      <div class="day-item"><div class="day-num">6–7</div><div class="day-content"><h4>Phi Phi Islands & Beach Days</h4><p>Full-day speedboat trip to Phi Phi and Maya Bay on day 6. Day 7 at leisure — beach, spa, kayaking or simply doing nothing. All valid choices.</p></div></div>
+      <div class="day-item"><div class="day-num">8</div><div class="day-content"><h4>Departure</h4><p>Transfer to airport, flight home with a very full camera roll and a strong desire to return.</p></div></div>
+    </div>
+
+    <div class="cta-note reveal">
+      <h4>Beach-only? Culture-only? We'll adapt.</h4>
+      <p>Not everyone wants three cities. If you just want a week on Koh Samui or Krabi without the cultural circuit — we'll build that instead. Tell us what sounds right and we'll design around it.</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="price-card">
+      <div class="price-label">Starting From</div>
+      <div class="price-range">₹40,000</div>
+      <div class="price-note">per person (varies by hotel level, duration & group size)</div>
+      <div class="best-value-tag">✦ Best Value Destination</div>
+      <div class="custom-note">Tell us your budget and we'll show you exactly how far it goes in Thailand.</div>
+      <a href="contact.html" class="btn-plan">Plan Your Journey</a>
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I'm%20interested%20in%20planning%20a%20Thailand%20trip." class="btn-wa" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message Us
+      </a>
+      <ul class="price-meta">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Flights + hotels included</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internal flights arranged</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All transfers included</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Elephant sanctuary included</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section class="cta-band">
+  <h2>Ready for Thailand?</h2>
+  <p>Tell us your budget and dates — we'll show you exactly what's possible.</p>
+  <div class="cta-band-btns">
+    <a href="contact.html" class="btn-white">Plan This Journey</a>
+    <a href="experiences.html" class="btn-outline-white">← Back to Experiences</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <p class="footer-tagline">Not Just Planned — Personalized!</p>
+    </div>
+    <div class="footer-links"><h5>Navigate</h5><ul><li><a href="index.html">Home</a></li><li><a href="experiences.html">Experiences</a></li><li><a href="why-us.html">Why Us</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div class="footer-links"><h5>Destinations</h5><ul><li><a href="experiences.html">Japan &amp; China</a></li><li><a href="experiences.html">Dubai</a></li><li><a href="experiences.html">United States</a></li><li><a href="experiences.html">Sri Lanka</a></li><li><a href="experiences.html">Domestic India</a></li></ul></div>
+    <div class="footer-links"><h5>Contact</h5><ul><li><a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Us</a></li><li><a href="tel:+91XXXXXXXXXX">Call Us</a></li><li><a href="mailto:hello@mahaveerglobalescapes.com">Email Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Mahaveer Global Escapes. All rights reserved.</p><span>Designed with ✦ for dreamers</span></div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let rx=0,ry=0,cx=0,cy=0;
+document.addEventListener('mousemove',(e)=>{cx=e.clientX;cy=e.clientY;cursor.style.left=cx+'px';cursor.style.top=cy+'px';});
+function animateRing(){rx+=(cx-rx)*0.12;ry+=(cy-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+animateRing();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.classList.add('active');ring.classList.add('active');});el.addEventListener('mouseleave',()=>{cursor.classList.remove('active');ring.classList.remove('active');});});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

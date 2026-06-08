@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dubai — Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#181e83;--sky:#788ddc;--white:#ffffff;--cream:#f9f7f2;--dark:#0c1147;--gold:#c8a96e;--light-sky:#dde4f5;--text-dark:#1a1a2e;--text-muted:#6b7280;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body { 
+  font-family: 'DM Sans', sans-serif; 
+  color: var(--text-dark); 
+  background: var(--white); 
+  overflow-x: hidden; 
+  cursor: default; 
+}
+/* NAV */
+nav { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  z-index: 1000; 
+  padding: 0 4%; 
+  display: flex; 
+  min-width: 100%;
+  align-items: center; 
+  justify-content: space-between; 
+  height: 76px; 
+  background: transparent; 
+  transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s; 
+}
+nav.scrolled { 
+  background: rgba(15,20,100,0.35); 
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+  border-bottom: 1px solid rgba(255,255,255,0.08); 
+}
+.nav-logo { 
+  cursor: default;
+  margin-top: 7px;
+  margin-left: -50px; 
+}
+.nav-logo img { 
+  height: 50px; 
+  -ms-transform-origin-y: contain;
+}
+.nav-logo-text { 
+  color: white; 
+  font-weight: 800; 
+  font-size: 1.1rem; 
+  letter-spacing: 0.08em; 
+}
+.nav-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 40px; 
+}
+.nav-links { 
+  display: flex; 
+  gap: 36px; 
+  list-style: none; 
+  align-items: center; 
+}
+.nav-links a { 
+  color: var(--white); 
+  text-decoration: none; 
+  font-size: 15px; 
+  font-weight: 1000; 
+  letter-spacing: 0.14em; 
+  text-transform: uppercase; 
+  opacity: 0.85; 
+  transition: opacity 0.2s; 
+  white-space: nowrap; 
+}
+.nav-links a:hover, .nav-links a.active { 
+  opacity: 1; 
+}
+.nav-cta { 
+  background: transparent !important; 
+  color: var(--white) !important; 
+  border: 1.5px solid rgba(255,255,255,0.75) !important; 
+  padding: 10px 28px !important; 
+  border-radius: 100px !important; 
+  font-size: 15px !important; 
+  font-weight: 1000 !important; 
+  letter-spacing: 0.12em !important; 
+  text-transform: uppercase !important; 
+  opacity: 1 !important; 
+  transition: background 0.25s, border-color 0.25s !important; 
+}
+.nav-cta:hover { 
+  background: rgba(255,255,255,0.15) !important; 
+  border-color: white !important; 
+}
+.hamburger { 
+  display: none; 
+  flex-direction: column; 
+  gap: 5px; 
+  cursor: default; 
+  padding: 8px; 
+}
+.hamburger span { 
+  width: 24px; 
+  height: 1.5px; 
+  background: white; 
+  display: block; 
+  transition: all 0.3s; 
+}
+
+
+.dest-hero{position:relative;min-height:80vh;display:flex;align-items:flex-end;padding:0 5% 80px;overflow:hidden;}
+.dest-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1920&q=85&auto=format&fit=crop');background-size:cover;background-position:center;animation:slowZoom 20s ease-in-out infinite alternate;}
+@keyframes slowZoom{from{transform:scale(1.04)}to{transform:scale(1.09)}}
+.dest-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,14,80,0.88) 0%,rgba(8,14,80,0.25) 55%,transparent 100%);}
+.dest-hero-content{position:relative;z-index:2;max-width:800px;}
+.breadcrumb{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;cursor:none;}
+.breadcrumb a:hover{color:rgba(255,255,255,0.9);}
+.breadcrumb span{color:rgba(255,255,255,0.25);font-size:12px;}
+.dest-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.dtag{background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);color:white;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid rgba(255,255,255,0.2);}
+.dest-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:400;color:white;line-height:1.05;margin-bottom:16px;opacity:0;animation:fadeUp 0.9s 0.2s ease forwards;}
+.dest-hero-sub{font-size:1.1rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;max-width:560px;opacity:0;animation:fadeUp 0.9s 0.45s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.dest-body{display:grid;grid-template-columns:1fr 360px;gap:60px;padding:80px 5%;max-width:1400px;margin:0 auto;}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--navy);margin-bottom:16px;font-weight:500;}
+.section-label::before{content:'';width:28px;height:1.5px;background:var(--gold);}
+.dest-main h2{font-family:'DM Serif Display',serif;font-size:2.2rem;font-weight:400;color:var(--dark);margin-bottom:16px;}
+.dest-main p{font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:20px;}
+
+.highlights-list{margin-top:32px;display:flex;flex-direction:column;gap:14px;}
+.highlight-row{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--cream);border-radius:4px;}
+.highlight-row-icon{font-size:1.5rem;flex-shrink:0;}
+.highlight-row p{font-size:0.88rem;color:var(--text-dark);line-height:1.6;}
+.highlight-row p b{display:block;font-weight:500;margin-bottom:2px;color:var(--dark);}
+
+.itinerary-section{margin-top:48px;}
+.itinerary-section h3{font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400;color:var(--dark);margin-bottom:24px;}
+.day-item{display:flex;gap:24px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(24,30,131,0.08);}
+.day-item:last-child{border-bottom:none;}
+.day-num{flex-shrink:0;width:48px;height:48px;background:var(--light-sky);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.9rem;color:var(--navy);}
+.day-content h4{font-size:1rem;font-weight:500;color:var(--dark);margin-bottom:6px;}
+.day-content p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
+
+.cta-note{margin-top:40px;padding:28px 32px;background:var(--cream);border-radius:6px;border-left:3px solid var(--gold);}
+.cta-note h4{font-size:1rem;font-weight:500;color:var(--dark);margin-bottom:8px;}
+.cta-note p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
+
+.price-card{background:white;border:1px solid rgba(24,30,131,0.12);border-radius:8px;padding:32px;box-shadow:0 8px 32px rgba(24,30,131,0.08);position:sticky;top:100px;}
+.price-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.price-range{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);margin-bottom:4px;}
+.price-note{font-size:0.75rem;color:var(--text-muted);margin-bottom:24px;}
+.custom-note{background:var(--light-sky);border-radius:4px;padding:14px 16px;margin-bottom:24px;font-size:0.82rem;color:var(--navy);line-height:1.6;}
+.btn-plan{display:block;width:100%;text-align:center;background:var(--navy);color:white;text-decoration:none;padding:16px;border-radius:100px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:background 0.2s;cursor:none;margin-bottom:12px;}
+.btn-plan:hover{background:#242ead;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:white;text-decoration:none;padding:14px;border-radius:100px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;transition:background 0.2s;cursor:none;}
+.btn-wa:hover{background:#1dbd5a;}
+.btn-wa svg{width:16px;height:16px;fill:white;}
+.price-meta{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+.price-meta li{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text-muted);}
+.price-meta li svg{width:14px;height:14px;stroke:var(--sky);fill:none;stroke-width:1.5;flex-shrink:0;}
+
+.cta-band{background:var(--navy);padding:80px 5%;text-align:center;}
+.cta-band h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:white;font-weight:400;margin-bottom:16px;}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,0.6);margin-bottom:36px;max-width:440px;margin:0 auto 36px;line-height:1.7;}
+.cta-band-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:white;color:var(--navy);padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:none;text-decoration:none;transition:background 0.2s;}
+.btn-white:hover{background:var(--cream);}
+.btn-outline-white{background:transparent;color:rgba(255,255,255,0.6);border:1.5px solid rgba(255,255,255,0.3);padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:none;text-decoration:none;transition:color 0.2s,border-color 0.2s;}
+.btn-outline-white:hover{color:white;border-color:white;}
+footer{background:#060a2e;padding:40px 5% 24px;}
+.footer-bottom-simple{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom-simple p{font-size:0.75rem;color:rgba(255,255,255,0.25);}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-nav a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;cursor:none;}
+.footer-nav a:hover{color:var(--sky);}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}.dest-body{grid-template-columns:1fr;}.price-card{position:static;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="D:\Work\Mahaveer Global Escapes\Final Work\MGE Logo.png" alt="MGE" onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\experiences.html">Experiences</a></li>
+      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\why-us.html">Why Us</a></li>
+      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\about.html">About</a></li>
+      <li><a href="#testimonials">Review</a></li>
+      <li><a href="#plan" class="nav-cta">Plan Your Trip</a></li>
+    </ul>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="dest-hero">
+  <div class="dest-hero-bg"></div>
+  <div class="dest-hero-overlay"></div>
+  <div class="dest-hero-content">
+    <div class="breadcrumb"><a href="experiences.html">Experiences</a><span>/</span><span style="color:rgba(255,255,255,0.7);">Dubai</span></div>
+    <div class="dest-tags"><span class="dtag">Luxury</span><span class="dtag">City</span><span class="dtag">Desert</span><span class="dtag">4–6 Days</span></div>
+    <h1>Dubai</h1>
+    <p class="dest-hero-sub">Where the world's most audacious skyline meets ancient desert — a city that constantly surprises, and somehow always delivers.</p>
+  </div>
+</section>
+
+<div class="dest-body">
+  <div class="dest-main">
+    <div class="reveal">
+      <div class="section-label">Overview</div>
+      <h2>The City That Built the Future</h2>
+      <p>Dubai is unlike anywhere else on earth. It's a city that decided the impossible was merely a starting point — and then built it anyway. The Burj Khalifa. The Palm. The indoor ski slope in the desert. The souk where you can buy gold by the gram at midnight.</p>
+      <p>But Dubai also has depth beyond the spectacle. The old Al Fahidi neighbourhood. The creek at dusk. The silence of the desert an hour from downtown. We show you all of it — the dazzle and the soul.</p>
+    </div>
+
+    <div class="highlights-list reveal">
+      <div class="highlight-row"><div class="highlight-row-icon">🏙️</div><div><p><b>Burj Khalifa At the Top</b>148th floor, 555 metres above the city. Nothing prepares you for the view — or the silence up there.</p></div></div>
+      <div class="highlight-row"><div class="highlight-row-icon">🐪</div><div><p><b>Desert Safari & Dune Bashing</b>Private 4x4 across golden dunes, camel ride at sunset, Bedouin camp dinner under the stars. Unmissable.</p></div></div>
+      <div class="highlight-row"><div class="highlight-row-icon">🛥️</div><div><p><b>Dubai Creek Abra Ride</b>A ten-dirham wooden boat across the historic creek — one of the most atmospheric journeys in the city.</p></div></div>
+      <div class="highlight-row"><div class="highlight-row-icon">🍽️</div><div><p><b>Rooftop Dining</b>A curated dinner above the city lights — we arrange reservations at Dubai's best rooftop venues.</p></div></div>
+    </div>
+
+    <div class="itinerary-section reveal">
+      <h3>Sample Itinerary</h3>
+      <div class="day-item"><div class="day-num">1</div><div class="day-content"><h4>Arrival & Downtown Dubai</h4><p>Airport pickup, hotel check-in. Evening at Downtown Dubai — Dubai Fountain show, Burj Khalifa at night, dinner at a lakeside restaurant.</p></div></div>
+      <div class="day-item"><div class="day-num">2</div><div class="day-content"><h4>Burj Khalifa & Dubai Mall</h4><p>Morning visit to Burj Khalifa "At the Top." Afternoon at your leisure in the Dubai Mall. Optional aquarium and underwater zoo visit.</p></div></div>
+      <div class="day-item"><div class="day-num">3</div><div class="day-content"><h4>Old Dubai & Gold Souk</h4><p>Al Fahidi historical neighbourhood, Dubai Museum, abra ride across the creek, spice souk and gold souk. Lunch at a traditional Emirati restaurant.</p></div></div>
+      <div class="day-item"><div class="day-num">4</div><div class="day-content"><h4>Desert Safari</h4><p>Afternoon desert safari with dune bashing, camel ride, henna painting and sandboarding. Bedouin camp dinner with live entertainment under the stars.</p></div></div>
+      <div class="day-item"><div class="day-num">5</div><div class="day-content"><h4>Palm Jumeirah & Atlantis</h4><p>Morning at Palm Jumeirah — the monorail, beach, optional Aquaventure waterpark. Sunset from the top of the Palm. Farewell rooftop dinner.</p></div></div>
+    </div>
+
+    <div class="cta-note reveal">
+      <h4>Want to add Abu Dhabi?</h4>
+      <p>The Sheikh Zayed Grand Mosque and the Louvre Abu Dhabi are each extraordinary in their own right. We can extend your trip by a day or two to include them — just let us know.</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="price-card">
+      <div class="price-label">Starting From</div>
+      <div class="price-range">₹60,000</div>
+      <div class="price-note">per person (varies by hotel, season & group size)</div>
+      <div class="custom-note">✦ Tell us your travel dates and we'll put together an exact price for your trip.</div>
+      <a href="contact.html" class="btn-plan">Plan Your Journey</a>
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I'm%20interested%20in%20planning%20a%20Dubai%20trip." class="btn-wa" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message Us
+      </a>
+      <ul class="price-meta">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Flights + hotel included</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All transfers arranged</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Desert safari included</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Fully customisable</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section class="cta-band">
+  <h2>Ready to Experience Dubai?</h2>
+  <p>Share your dates and we'll build your perfect Dubai escape.</p>
+  <div class="cta-band-btns">
+    <a href="contact.html" class="btn-white">Plan This Journey</a>
+    <a href="experiences.html" class="btn-outline-white">← Back to Experiences</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <p class="footer-tagline">Not Just Planned — Personalized!</p>
+    </div>
+    <div class="footer-links"><h5>Navigate</h5><ul><li><a href="index.html">Home</a></li><li><a href="experiences.html">Experiences</a></li><li><a href="why-us.html">Why Us</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div class="footer-links"><h5>Destinations</h5><ul><li><a href="experiences.html">Japan &amp; China</a></li><li><a href="experiences.html">Dubai</a></li><li><a href="experiences.html">United States</a></li><li><a href="experiences.html">Sri Lanka</a></li><li><a href="experiences.html">Domestic India</a></li></ul></div>
+    <div class="footer-links"><h5>Contact</h5><ul><li><a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Us</a></li><li><a href="tel:+91XXXXXXXXXX">Call Us</a></li><li><a href="mailto:hello@mahaveerglobalescapes.com">Email Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Mahaveer Global Escapes. All rights reserved.</p><span>Designed with ✦ for dreamers</span></div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let rx=0,ry=0,cx=0,cy=0;
+document.addEventListener('mousemove',(e)=>{cx=e.clientX;cy=e.clientY;cursor.style.left=cx+'px';cursor.style.top=cy+'px';});
+function animateRing(){rx+=(cx-rx)*0.12;ry+=(cy-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+animateRing();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.classList.add('active');ring.classList.add('active');});el.addEventListener('mouseleave',()=>{cursor.classList.remove('active');ring.classList.remove('active');});});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Your Trip — Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#181e83;--sky:#788ddc;--white:#ffffff;--cream:#f9f7f2;--dark:#0c1147;--gold:#c8a96e;--light-sky:#dde4f5;--text-dark:#1a1a2e;--text-muted:#6b7280;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{
+  scroll-behavior:smooth;
+}
+body { 
+  font-family: 'DM Sans', sans-serif; 
+  color: var(--text-dark); 
+  background: var(--white); 
+  overflow-x: hidden; 
+  cursor: default; 
+}
+/* NAV */
+nav { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  z-index: 1000; 
+  padding: 0 4%; 
+  display: flex; 
+  min-width: 100%;
+  align-items: center; 
+  justify-content: space-between; 
+  height: 76px; 
+  background: transparent; 
+  transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s; 
+}
+nav.scrolled { 
+  background: rgba(15,20,100,0.35); 
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+  border-bottom: 1px solid rgba(255,255,255,0.08); 
+}
+.nav-logo { 
+  cursor: default;
+  margin-top: 7px;
+  margin-left: -50px; 
+}
+.nav-logo img { 
+  height: 50px; 
+  -ms-transform-origin-y: contain;
+}
+.nav-logo-text { 
+  color: white; 
+  font-weight: 800; 
+  font-size: 1.1rem; 
+  letter-spacing: 0.08em; 
+}
+.nav-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 40px; 
+}
+.nav-links { 
+  display: flex; 
+  gap: 36px; 
+  list-style: none; 
+  align-items: center; 
+}
+.nav-links a { 
+  color: var(--white); 
+  text-decoration: none; 
+  font-size: 15px; 
+  font-weight: 1000; 
+  letter-spacing: 0.14em; 
+  text-transform: uppercase; 
+  opacity: 0.85; 
+  transition: opacity 0.2s; 
+  white-space: nowrap; 
+}
+.nav-links a:hover, .nav-links a.active { 
+  opacity: 1; 
+}
+.nav-cta { 
+  background: transparent !important; 
+  color: var(--white) !important; 
+  border: 1.5px solid rgba(255,255,255,0.75) !important; 
+  padding: 10px 28px !important; 
+  border-radius: 100px !important; 
+  font-size: 15px !important; 
+  font-weight: 1000 !important; 
+  letter-spacing: 0.12em !important; 
+  text-transform: uppercase !important; 
+  opacity: 1 !important; 
+  transition: background 0.25s, border-color 0.25s !important; 
+}
+.nav-cta:hover { 
+  background: rgba(255,255,255,0.15) !important; 
+  border-color: white !important; 
+}
+.hamburger { 
+  display: none; 
+  flex-direction: column; 
+  gap: 5px; 
+  cursor: default; 
+  padding: 8px; 
+}
+.hamburger span { 
+  width: 24px; 
+  height: 1.5px; 
+  background: white; 
+  display: block; 
+  transition: all 0.3s; 
+}
+
+
+/* PAGE HERO */
+.contact-hero{padding:140px 5% 80px;background:var(--dark);position:relative;overflow:hidden;text-align:center;}
+.contact-hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(120,141,220,0.1) 0%,transparent 65%);pointer-events:none;}
+.contact-hero-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.contact-hero-label::before{content:'';width:28px;height:1.5px;background:var(--gold);}
+.contact-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:400;color:white;line-height:1.1;margin-bottom:20px;opacity:0;animation:fadeUp 0.9s 0.2s ease forwards;}
+.contact-hero p{font-size:1.1rem;font-weight:300;color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto;line-height:1.75;opacity:0;animation:fadeUp 0.9s 0.45s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* MAIN CONTACT BODY */
+.contact-body{padding:80px 5%;display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1300px;margin:0 auto;}
+
+/* LEFT — PRIMARY ACTIONS */
+.contact-primary{}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--navy);margin-bottom:16px;font-weight:500;}
+.section-label::before{content:'';width:28px;height:1.5px;background:var(--gold);}
+.contact-primary h2{font-family:'DM Serif Display',serif;font-size:2.4rem;font-weight:400;color:var(--dark);line-height:1.15;margin-bottom:16px;}
+.contact-primary h2 em{font-style:italic;color:var(--navy);}
+.contact-primary > p{font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:40px;}
+
+.wa-card{display:flex;align-items:center;gap:24px;background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:28px 32px;text-decoration:none;cursor:none;transition:transform 0.2s,box-shadow 0.2s;margin-bottom:20px;}
+.wa-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(37,211,102,0.15);}
+.wa-icon{width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.wa-icon svg{width:28px;height:28px;fill:white;}
+.wa-card-text h3{font-size:1.1rem;font-weight:500;color:#1a1a2e;margin-bottom:4px;}
+.wa-card-text p{font-size:0.83rem;color:#6b7280;line-height:1.5;}
+.wa-card-arrow{margin-left:auto;color:#25D366;font-size:1.2rem;flex-shrink:0;}
+
+.call-card{display:flex;align-items:center;gap:24px;background:var(--light-sky);border:1.5px solid rgba(120,141,220,0.3);border-radius:8px;padding:28px 32px;text-decoration:none;cursor:none;transition:transform 0.2s,box-shadow 0.2s;margin-bottom:20px;}
+.call-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(24,30,131,0.1);}
+.call-icon{width:56px;height:56px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.call-icon svg{width:24px;height:24px;stroke:white;fill:none;stroke-width:1.5;}
+.call-card-text h3{font-size:1.1rem;font-weight:500;color:var(--dark);margin-bottom:4px;}
+.call-card-text p{font-size:0.83rem;color:var(--text-muted);line-height:1.5;}
+.call-card-arrow{margin-left:auto;color:var(--navy);font-size:1.2rem;flex-shrink:0;}
+
+.email-card{display:flex;align-items:center;gap:24px;background:var(--cream);border:1.5px solid rgba(200,169,110,0.3);border-radius:8px;padding:28px 32px;text-decoration:none;cursor:none;transition:transform 0.2s,box-shadow 0.2s;}
+.email-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(200,169,110,0.1);}
+.email-icon{width:56px;height:56px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.email-icon svg{width:24px;height:24px;stroke:white;fill:none;stroke-width:1.5;}
+.email-card-text h3{font-size:1.1rem;font-weight:500;color:var(--dark);margin-bottom:4px;}
+.email-card-text p{font-size:0.83rem;color:var(--text-muted);line-height:1.5;}
+.email-card-arrow{margin-left:auto;color:var(--gold);font-size:1.2rem;flex-shrink:0;}
+
+/* RIGHT — WHAT TO TELL US + FAQ */
+.contact-right{}
+.what-to-tell{background:var(--dark);border-radius:8px;padding:40px;margin-bottom:32px;}
+.what-to-tell h3{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;color:white;margin-bottom:8px;}
+.what-to-tell > p{font-size:0.83rem;color:rgba(255,255,255,0.4);margin-bottom:24px;line-height:1.6;}
+.tell-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.tell-item:last-child{border-bottom:none;}
+.tell-num{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--sky);flex-shrink:0;min-width:24px;}
+.tell-text h4{font-size:0.9rem;font-weight:500;color:white;margin-bottom:3px;}
+.tell-text p{font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.5;}
+
+.faq-section{}
+.faq-section h3{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;color:var(--dark);margin-bottom:20px;}
+.faq-item{border-bottom:1px solid rgba(24,30,131,0.1);padding:18px 0;}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{font-size:0.9rem;font-weight:500;color:var(--dark);margin-bottom:8px;cursor:none;}
+.faq-a{font-size:0.83rem;color:var(--text-muted);line-height:1.7;}
+
+/* PROCESS REMINDER */
+.process-strip{padding:60px 5%;background:var(--cream);}
+.process-strip-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.process-strip-inner::before{content:'';position:absolute;top:24px;left:24px;right:24px;height:1px;background:linear-gradient(to right,rgba(24,30,131,0.2),rgba(24,30,131,0.05));}
+.process-step{padding:0 24px 0 0;position:relative;}
+.ps-dot{width:48px;height:48px;border-radius:50%;background:white;border:1.5px solid rgba(24,30,131,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-family:'DM Serif Display',serif;font-size:0.9rem;color:var(--navy);}
+.process-step h4{font-size:0.9rem;font-weight:500;color:var(--dark);margin-bottom:6px;}
+.process-step p{font-size:0.78rem;color:var(--text-muted);line-height:1.6;}
+
+footer{background:#060a2e;padding:40px 5% 24px;}
+.footer-bottom-simple{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom-simple p{font-size:0.75rem;color:rgba(255,255,255,0.25);}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-nav a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;cursor:none;}
+.footer-nav a:hover{color:var(--sky);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
+  .contact-body{grid-template-columns:1fr;gap:40px;}
+  .process-strip-inner{grid-template-columns:1fr 1fr;}.process-strip-inner::before{display:none;}
+}
+@media(max-width:600px){
+  .process-strip-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Images/MGE Logo.png" alt="MGE" onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="why-us.html">Why Us</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#plan" class="nav-cta">Plan Your Trip</a></li>
+    </ul>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="contact-hero">
+  <div class="contact-hero-label">Get in Touch</div>
+  <h1>Let's Design Your<br><em style="font-style:italic;color:var(--sky);">Perfect Journey</em></h1>
+  <p>One message is all it takes. Tell us where you want to go — or just that you want to go somewhere — and we'll take it from there.</p>
+</section>
+
+<!-- MAIN BODY -->
+<div class="contact-body">
+
+  <!-- LEFT: PRIMARY CONTACT CHANNELS -->
+  <div class="contact-primary reveal">
+    <div class="section-label">Reach Us</div>
+    <h2>Start the <em>Conversation</em></h2>
+    <p>No forms, no waiting. Pick whichever channel feels easiest and we'll respond promptly.</p>
+
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mahaveer%20Global%20Escapes!%20I%20want%20to%20plan%20a%20trip.%20Here%27s%20what%20I%27m%20thinking%3A" class="wa-card" target="_blank" rel="noopener">
+      <div class="wa-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <div class="wa-card-text">
+        <h3>Message Us on WhatsApp</h3>
+        <p>Fastest way to reach us. We respond within hours — usually much sooner.</p>
+      </div>
+      <div class="wa-card-arrow">→</div>
+    </a>
+
+    <a href="tel:+91XXXXXXXXXX" class="call-card">
+      <div class="call-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5A2 2 0 0 1 3.59 1.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.06a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div class="call-card-text">
+        <h3>Call Us Directly</h3>
+        <p>Prefer a conversation? Call us. We're available and happy to talk through your plans.</p>
+      </div>
+      <div class="call-card-arrow">→</div>
+    </a>
+
+    <a href="mailto:hello@mahaveerglobalescapes.com" class="email-card">
+      <div class="email-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="email-card-text">
+        <h3>Send an Email</h3>
+        <p>hello@mahaveerglobalescapes.com — for longer queries or document sharing.</p>
+      </div>
+      <div class="email-card-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- RIGHT: WHAT TO TELL US + FAQ -->
+  <div class="contact-right reveal">
+    <div class="what-to-tell">
+      <h3>What to Tell Us</h3>
+      <p>The more you share, the better we can plan. Here's a simple guide:</p>
+      <div class="tell-item">
+        <div class="tell-num">1</div>
+        <div class="tell-text"><h4>Where you want to go</h4><p>Or even just a feeling — "beach," "cold weather," "something cultural." We'll help with the rest.</p></div>
+      </div>
+      <div class="tell-item">
+        <div class="tell-num">2</div>
+        <div class="tell-text"><h4>When you're thinking of travelling</h4><p>Rough dates are fine. We'll work around school holidays, peak seasons and your calendar.</p></div>
+      </div>
+      <div class="tell-item">
+        <div class="tell-num">3</div>
+        <div class="tell-text"><h4>Who's travelling</h4><p>Solo, couple, family with kids, group of friends — it shapes everything we plan.</p></div>
+      </div>
+      <div class="tell-item">
+        <div class="tell-num">4</div>
+        <div class="tell-text"><h4>Your approximate budget</h4><p>Any range is fine. We'll tell you honestly what's achievable — and what isn't.</p></div>
+      </div>
+      <div class="tell-item">
+        <div class="tell-num">5</div>
+        <div class="tell-text"><h4>Anything specific you want</h4><p>A particular hotel, experience, anniversary surprise — share anything that matters.</p></div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <h3>Quick Answers</h3>
+      <div class="faq-item">
+        <div class="faq-q">Is there a fee to get a quote?</div>
+        <div class="faq-a">None at all. Consultation, planning and quoting is completely free. You only pay once you decide to book.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How quickly will you respond?</div>
+        <div class="faq-a">WhatsApp messages typically get a response within a few hours. We're available 7 days a week.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I change the plan after it's submitted?</div>
+        <div class="faq-a">Absolutely. We iterate as many times as you need until the plan is exactly right. No pressure, no rush.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you handle visa assistance?</div>
+        <div class="faq-a">We guide you through the visa process and let you know exactly what's needed for each destination you travel to.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if something goes wrong on the trip?</div>
+        <div class="faq-a">We're available 24/7 throughout your journey. If anything comes up — flight issues, hotel problems, anything — you reach us directly and we handle it.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PROCESS REMINDER -->
+<section class="process-strip">
+  <div class="process-strip-inner reveal">
+    <div class="process-step">
+      <div class="ps-dot">01</div>
+      <h4>Tell Us Your Dream</h4>
+      <p>Message us with your destination, dates, budget and who's travelling. No forms. Just talk.</p>
+    </div>
+    <div class="process-step">
+      <div class="ps-dot">02</div>
+      <h4>We Design the Plan</h4>
+      <p>We build a custom itinerary — flights, hotels, sightseeing — around your exact requirements.</p>
+    </div>
+    <div class="process-step">
+      <div class="ps-dot">03</div>
+      <h4>Review & Refine</h4>
+      <p>You review, suggest changes, and we tweak until the plan is exactly right. No pressure.</p>
+    </div>
+    <div class="process-step">
+      <div class="ps-dot">04</div>
+      <h4>Travel & Enjoy</h4>
+      <p>Pack your bags. We handle everything else, and we're with you every day of your journey.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <p class="footer-tagline">Not Just Planned — Personalized!</p>
+    </div>
+    <div class="footer-links"><h5>Navigate</h5><ul><li><a href="index.html">Home</a></li><li><a href="experiences.html">Experiences</a></li><li><a href="why-us.html">Why Us</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div class="footer-links"><h5>Destinations</h5><ul><li><a href="experiences.html">Japan &amp; China</a></li><li><a href="experiences.html">Dubai</a></li><li><a href="experiences.html">United States</a></li><li><a href="experiences.html">Sri Lanka</a></li><li><a href="experiences.html">Domestic India</a></li></ul></div>
+    <div class="footer-links"><h5>Contact</h5><ul><li><a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Us</a></li><li><a href="tel:+91XXXXXXXXXX">Call Us</a></li><li><a href="mailto:hello@mahaveerglobalescapes.com">Email Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Mahaveer Global Escapes. All rights reserved.</p><span>Designed with ✦ for dreamers</span></div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let rx=0,ry=0,cx=0,cy=0;
+document.addEventListener('mousemove',(e)=>{cx=e.clientX;cy=e.clientY;cursor.style.left=cx+'px';cursor.style.top=cy+'px';});
+function animateRing(){rx+=(cx-rx)*0.12;ry+=(cy-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing);}
+animateRing();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.classList.add('active');ring.classList.add('active');});el.addEventListener('mouseleave',()=>{cursor.classList.remove('active');ring.classList.remove('active');});});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
