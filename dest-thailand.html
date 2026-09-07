@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thailand — Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a237e;--sky:#5c7dd4;--white:#fff;
+  --cream:#f9f7f2;--dark:#0d1547;--gold:#c8a96e;
+  --light-sky:#dde4f5;--text-dark:#1a1a2e;--text-muted:#6b7280;
+  --red:#d32f2f;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:#fff;overflow-x:hidden;}
+
+/* ══ NAV ══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;height:72px;background:transparent;transition:background 0.4s;}
+nav.scrolled{background:rgba(215, 219, 240, 0.92);backdrop-filter:blur(16px);}
+.nav-logo{cursor:default;display:flex;align-items:center;gap:10px;}
+.nav-logo img{height:48px;object-fit:contain;}
+.nav-logo-text{color:white;font-weight:800;font-size:1rem;letter-spacing:0.06em;}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{color:#1a2380;text-decoration:none;font-size:13.5px;font-weight:1000;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta-btn{background:var(--red)!important;color:#fff!important;border:none!important;padding:10px 24px!important;border-radius:24px!important;font-size:13px!important;font-weight:700!important;letter-spacing:0.1em!important;text-transform:uppercase!important;opacity:1!important;transition:background 0.2s!important;}
+.nav-cta-btn:hover{background:#b71c1c!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;outline:none;z-index:1100;}
+.hamburger span{width:24px;height:1.5px;background:white;display:block;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(13,21,71,0.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{color:#fff;text-decoration:none;font-size:1.3rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;}
+.mobile-nav a:hover{opacity:1;}
+.mobile-nav-cta{background:var(--red);color:#fff!important;padding:13px 36px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:1!important;margin-top:8px;}
+
+/* ══ REVEAL ══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ════════════════════════════
+   HERO
+   Full viewport, photo of Phi Phi / longtail boat
+   Left column text: WELCOME TO (red), THAILAND (huge white bold),
+   subtitle white, italic red tagline, red pill button
+════════════════════════════ */
+.hero{
+  position:relative;
+  height:100vh;min-height:600px;
+  overflow:hidden;
+  display:flex;align-items:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  /* longtail boat, Phi Phi limestone karsts, turquoise water */
+  background:url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1920&q=90&auto=format&fit=crop') center/cover no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.35) 45%,transparent 75%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 5%;
+  padding-top:72px;
+  max-width:600px;
+  animation:fadeUp 0.9s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-welcome{
+  display:block;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--red);margin-bottom:6px;
+}
+.hero-h1{
+  font-family:'Inter',sans-serif;font-weight:800;
+  font-size:clamp(5rem,11vw,9rem);
+  color:#fff;line-height:0.92;
+  letter-spacing:-0.01em;margin-bottom:20px;
+}
+.hero-sub{
+  font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:400;
+  color:rgba(255,255,255,0.92);line-height:1.5;
+  margin-bottom:4px;
+}
+.hero-tagline{
+  display:block;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.2rem;color:var(--red);
+  margin-bottom:28px;
+}
+.hero-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:#fff;text-decoration:none;
+  padding:14px 28px;border-radius:4px;
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  transition:background 0.2s;
+}
+.hero-btn:hover{background:#b71c1c;}
+.hero-btn svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;}
+
+/* ════════════════════════════
+   FACTS STRIP
+   White bg, slight shadow, 5 columns with vertical dividers
+   Each col: RED icon (bare, no circle), bold red label, bold dark value, grey sub
+   Exact icons from image: calendar, beach umbrella, pagoda/temple, B-in-circle, airplane
+════════════════════════════ */
+.facts{
+  background:#fff;
+  box-shadow:0 2px 20px rgba(0,0,0,0.08);
+  position:relative;z-index:5;
+}
+.facts-row{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  max-width:1200px;margin:0 auto;
+}
+.fact{
+  padding:28px 24px;
+  display:flex;align-items:flex-start;gap:14px;
+  border-right:1px solid #e8e8e8;
+}
+.fact:last-child{border-right:none;}
+.fact-icon{flex-shrink:0;margin-top:2px;}
+.fact-icon svg{display:block;}
+.f-label{display:block;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:4px;}
+.f-val{display:block;font-size:0.88rem;font-weight:700;color:var(--dark);line-height:1.35;}
+.f-sub{display:block;font-size:0.78rem;color:var(--text-muted);margin-top:2px;line-height:1.4;}
+
+/* ════════════════════════════
+   WHEN TO GO — SEASONS
+   White bg with grey border box around right side
+   Left ~42%: tall photo (Doi Suthep / temple at sunset)
+   Right ~58%: padding, "WHEN TO GO" red, big serif title,
+   body, then 4 season cards in a row
+   NOV-FEB card: navy bg, white text
+   Other 3: white bg, light border
+   Season icons: bare line icons (sun, sun, cloud, arch/temple)
+════════════════════════════ */
+.seasons-section{
+  background:#f5f5f5;
+  padding:0;
+}
+.seasons-inner{
+  display:grid;grid-template-columns:42% 58%;
+  min-height:540px;
+}
+.season-photo{
+  position:relative;overflow:hidden;
+}
+.season-photo-bg{
+  position:absolute;inset:0;
+  background:url('images/Thailand Home.jpg') center/cover no-repeat;
+}
+.season-right{
+  background:#fff;
+  padding:48px 40px 48px 44px;
+  border:1px solid #e0e0e0;
+  border-left:none;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.s-eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+.s-title{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(1.9rem,3vw,2.6rem);color:var(--dark);line-height:1.15;margin-bottom:12px;}
+.s-body{font-size:0.88rem;color:var(--text-muted);line-height:1.75;margin-bottom:28px;max-width:460px;}
+.season-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.scard{padding:18px 14px;border:1px solid #e0e0e0;background:#fff;}
+.scard.featured{background:var(--navy);border-color:var(--navy);}
+.scard-icon{margin-bottom:8px;height:28px;display:flex;align-items:center;}
+.scard-icon svg{width:24px;height:24px;stroke:var(--red);fill:none;stroke-width:1.5;}
+.scard.featured .scard-icon svg{stroke:#9faee5;}
+.scard-period{font-family:'Inter',sans-serif;font-weight:700;font-size:0.82rem;color:#1a1a2e;margin-bottom:2px;}
+.scard.featured .scard-period{color:#fff;}
+.scard-vibe{font-size:0.7rem;color:var(--red);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.scard.featured .scard-vibe{color:#9faee5;}
+.scard-desc{font-size:0.73rem;color:var(--text-muted);line-height:1.5;}
+.scard.featured .scard-desc{color:rgba(255,255,255,0.55);}
+
+/* ════════════════════════════
+   ICONIC DESTINATIONS
+   White bg, "ICONIC DESTINATIONS" red eyebrow
+   3 equal tall image cards, no gap/tiny gap
+   Each: full image bg, dark navy gradient overlay from bottom
+   Bottom text: small white icon (no circle), CITY bold white caps,
+   subtitle small grey, description white small
+════════════════════════════ */
+.dest-section{background:#fff;padding:56px 32px;}
+.dest-eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:20px;}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.dcard{position:relative;height:380px;overflow:hidden;border-radius:3px;cursor:default;}
+.dcard-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.7s;}
+.dcard:hover .dcard-bg{transform:scale(1.05);}
+.dcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,21,71,0.92) 0%,rgba(13,21,71,0.3) 55%,transparent 100%);}
+.dcard-body{position:absolute;bottom:0;left:0;right:0;padding:20px 18px;z-index:2;}
+.dcard-icon{margin-bottom:6px;}
+.dcard-icon svg{width:30px;height:30px;stroke:rgba(255,255,255,0.7);fill:none;stroke-width:1.2;}
+.dcard-name{font-family:'Inter',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:2px;}
+.dcard-sub{font-size:0.68rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.12em;font-weight:500;margin-bottom:7px;}
+.dcard-desc{font-size:0.78rem;color:rgba(255,255,255,0.72);line-height:1.5;}
+
+/* ════════════════════════════
+   THINGS TO DO
+   Light grey bg, "THINGS TO DO IN THAILAND" red eyebrow
+   7 items in a ROW — each: bare red icon (NO circle),
+   bold dark label (2 lines), grey desc below
+   White bg for each item area, separated
+════════════════════════════ */
+.things-section{background:#f5f5f5;padding:52px 32px;}
+.things-eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:28px;}
+.things-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;background:#fff;border:1px solid #e8e8e8;}
+.titem{
+  padding:24px 14px;text-align:center;
+  border-right:1px solid #e8e8e8;
+}
+.titem:last-child{border-right:none;}
+.titem-icon{margin-bottom:12px;display:flex;justify-content:center;align-items:center;height:40px;}
+.titem-icon svg{width:36px;height:36px;stroke:var(--red);fill:none;stroke-width:1.3;}
+.titem-name{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dark);margin-bottom:5px;line-height:1.3;}
+.titem-desc{font-size:0.71rem;color:var(--text-muted);line-height:1.5;}
+
+/* ════════════════════════════
+   BOTTOM BAND — Month Guide left, Trust Bar right
+════════════════════════════ */
+.bottom-band{display:grid;grid-template-columns:1fr 1fr;}
+.month-col{background:#fff;padding:44px 32px;border-top:1px solid #e8e8e8;}
+.month-label{display:block;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:20px;}
+.month-grid{display:grid;grid-template-columns:repeat(6,1fr);margin-bottom:18px;}
+.mcell{padding:10px 6px;text-align:center;border:1px solid #e8e8e8;margin:-1px 0 0 -1px;}
+.mname{display:block;font-size:0.68rem;font-weight:700;letter-spacing:0.06em;color:#333;margin-bottom:6px;}
+.mdot{width:11px;height:11px;border-radius:50%;margin:0 auto;display:block;}
+.dot-ex{background:#1a237e;}
+.dot-good{background:#d32f2f;}
+.dot-bud{background:#90afd4;}
+.month-legend{display:flex;gap:20px;flex-wrap:wrap;}
+.mleg{display:flex;align-items:center;gap:7px;font-size:0.73rem;color:var(--text-muted);}
+.mleg-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+
+/* Trust bar — now right column of bottom band */
+.trust-col{background:var(--dark);padding:44px 32px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;border-top:1px solid rgba(255,255,255,0.05);}
+.tbar{padding:24px 20px;display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);}
+.tbar:nth-child(2){border-right:none;}
+.tbar:nth-child(3){border-bottom:none;}
+.tbar:nth-child(4){border-bottom:none;border-right:none;}
+.tbar-icon{flex-shrink:0;margin-top:2px;}
+.tbar-icon svg{width:26px;height:26px;stroke:rgba(255,255,255,0.5);fill:none;stroke-width:1.4;}
+.tbar-title{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;margin-bottom:3px;}
+.tbar-desc{font-size:0.73rem;color:rgba(255,255,255,0.4);line-height:1.5;}
+
+/* ════════════════════════════
+   THAILAND JOURNEY AWAITS — full width CTA
+════════════════════════════ */
+.journey-cta{
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:64px 5%;gap:40px;flex-wrap:wrap;
+  min-height:260px;
+}
+.journey-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1920&q=85&auto=format&fit=crop') center/cover no-repeat;
+}
+.journey-overlay{position:absolute;inset:0;background:rgba(13,21,71,0.88);}
+.journey-text{position:relative;z-index:2;}
+.journey-eyebrow{display:block;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#7fa7e0;margin-bottom:8px;}
+.journey-title{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:8px;}
+.journey-sub{font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.6;max-width:420px;}
+.journey-actions{position:relative;z-index:2;display:flex;flex-direction:column;gap:14px;flex-shrink:0;}
+.journey-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:#fff;text-decoration:none;
+  padding:14px 28px;border-radius:4px;
+  font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  transition:background 0.2s;white-space:nowrap;
+}
+.journey-btn:hover{background:#b71c1c;}
+.journey-btn svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;}
+.journey-call{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;transition:color 0.2s;justify-content:center;}
+.journey-call:hover{color:rgba(255,255,255,0.85);}
+.yaksha{position:absolute;right:0;bottom:0;top:0;width:200px;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Wat_Phra_Kaew%2C_Bangkok%2C_Thailand_%284350155501%29.jpg/800px-Wat_Phra_Kaew%2C_Bangkok%2C_Thailand_%284350155501%29.jpg') center top/cover no-repeat;opacity:0.25;pointer-events:none;}
+
+/* ════════════════════════════
+   CTA BAND — exact from bali file
+════════════════════════════ */
+.cta-band{background:var(--navy);padding:80px 5%;text-align:center;}
+.cta-band h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:400;margin-bottom:16px;}
+.cta-band p{font-size:1rem;color:rgba(255,255,255,0.6);margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.cta-band-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;align-items:center;}
+.btn-white{background:#fff;color:var(--navy);border:none;padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:default;text-decoration:none;transition:background 0.2s,transform 0.15s;display:inline-block;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-back-link{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);text-decoration:none;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.2s;}
+.btn-back-link:hover{color:#fff;}
+
+/* ── FOOTER ── */
+footer{background:#060a2e;padding:60px 5% 30px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.footer-brand img{height:46px;margin-bottom:16px;display:block;}
+.footer-brand p{font-size:0.9rem;color:rgba(255,255,255,0.35);max-width:260px;line-height:1.7;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--gold);margin-top:8px;display:block;}
+.footer-links h5{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links li a{font-size:0.88rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.footer-links li a:hover{color:var(--sky);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p,.footer-bottom span{font-size:0.73rem;color:rgba(255,255,255,0.22);}
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media(max-width:900px){
+  .nav-links,.nav-cta-btn{display:none;}
+  .hamburger{display:flex;}
+  .mobile-nav{display:flex;}
+
+  .hero{align-items:flex-end;}
+  .hero-content{padding:0 5% 60px;padding-top:0;max-width:100%;}
+  .hero-overlay{background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.25) 60%,transparent 100%);}
+  .hero-h1{font-size:clamp(4rem,16vw,6rem);}
+
+  .facts-row{grid-template-columns:1fr 1fr;}
+  .fact{border-right:none;border-bottom:1px solid #e8e8e8;}
+  .fact:nth-child(odd){border-right:1px solid #e8e8e8;}
+  .fact:last-child{border-bottom:none;}
+
+  .seasons-inner{grid-template-columns:1fr;}
+  .season-photo{height:260px;position:relative;}
+  .season-right{border-left:1px solid #e0e0e0;border-top:none;}
+  .season-cards{grid-template-columns:1fr 1fr;}
+
+  .dest-section{padding:48px 16px;}
+  .dest-grid{grid-template-columns:1fr;gap:12px;}
+  .dcard{height:280px;}
+
+  .things-section{padding:48px 16px;}
+  .things-grid{grid-template-columns:1fr 1fr;}
+  .titem{border-right:none!important;border-bottom:1px solid #e8e8e8;}
+  .titem:nth-child(odd){border-right:1px solid #e8e8e8!important;}
+
+  /* Bottom band stacks: month guide top, trust bar below */
+  .bottom-band{grid-template-columns:1fr;}
+  .trust-col{grid-template-columns:1fr 1fr;padding:32px 16px;}
+  .tbar:nth-child(3){border-bottom:none;}
+  .tbar:nth-child(4){border-bottom:none;border-right:none;}
+
+  /* Journey CTA */
+  .journey-cta{flex-direction:column;align-items:flex-start;padding:48px 5%;}
+  .journey-actions{width:100%;}
+  .journey-btn{width:100%;justify-content:center;}
+  .journey-call{width:100%;justify-content:center;}
+  .yaksha{display:none;}
+
+  .cta-band-btns{flex-direction:column;align-items:center;}
+  .footer-top{flex-direction:column;gap:28px;}
+}
+@media(max-width:500px){
+  .facts-row{grid-template-columns:1fr;}
+  .fact:nth-child(odd){border-right:none;}
+  .season-cards{grid-template-columns:1fr 1fr;}
+  .things-grid{grid-template-columns:1fr 1fr;}
+  .trust-col{grid-template-columns:1fr;}
+  .tbar{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.08)!important;}
+  .tbar:last-child{border-bottom:none!important;}
+  .month-grid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="Images/Logo BACKGROUND REMOVED.png" alt="MGE"
+         onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#plan" class="nav-cta-btn">Plan My Trip</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+  <a href="why-us.html" class="mobile-nav-link">Why Us</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="#plan" class="mobile-nav-cta mobile-nav-link">Plan My Trip</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-welcome">Welcome to</span>
+    <h1 class="hero-h1">THAILAND</h1>
+    <p class="hero-sub">Temples, turquoise waters and<br>a culture that awakens the soul.</p>
+    <span class="hero-tagline">One destination, infinite journeys.</span>
+    <a href="#plan" class="hero-btn">
+      Plan My Thailand Journey
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FACTS STRIP -->
+<div class="facts reveal">
+  <div class="facts-row">
+    <!-- Calendar icon -->
+    <div class="fact">
+      <div class="fact-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.8">
+          <rect x="4" y="7" width="28" height="24" rx="2"/>
+          <line x1="4" y1="14" x2="32" y2="14"/>
+          <line x1="12" y1="4" x2="12" y2="10"/>
+          <line x1="24" y1="4" x2="24" y2="10"/>
+          <rect x="9" y="18" width="5" height="4" rx="0.5" fill="#d32f2f" stroke="none"/>
+        </svg>
+      </div>
+      <div>
+        <span class="f-label">Best Time to Visit</span>
+        <span class="f-val">Nov – Feb</span>
+        <span class="f-sub">Cool &amp; Pleasant</span>
+      </div>
+    </div>
+    <!-- Beach umbrella icon -->
+    <div class="fact">
+      <div class="fact-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.8">
+          <path d="M6 14 Q18 2 30 14"/>
+          <line x1="18" y1="14" x2="18" y2="32"/>
+          <line x1="18" y1="26" x2="24" y2="32"/>
+        </svg>
+      </div>
+      <div>
+        <span class="f-label">Perfect For</span>
+        <span class="f-val">Beach Getaways</span>
+        <span class="f-sub">Island Hopping<br>Culture &amp; Temples</span>
+      </div>
+    </div>
+    <!-- Temple/pagoda icon -->
+    <div class="fact">
+      <div class="fact-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.8">
+          <line x1="18" y1="4" x2="18" y2="8"/>
+          <path d="M10 10 L18 6 L26 10"/>
+          <rect x="12" y="10" width="12" height="5" rx="0"/>
+          <path d="M8 17 L18 13 L28 17"/>
+          <rect x="9" y="17" width="18" height="5" rx="0"/>
+          <rect x="13" y="22" width="10" height="10" rx="0"/>
+        </svg>
+      </div>
+      <div>
+        <span class="f-label">Language</span>
+        <span class="f-val">Thai</span>
+        <span class="f-sub">English widely<br>understood</span>
+      </div>
+    </div>
+    <!-- Bitcoin-B circle icon -->
+    <div class="fact">
+      <div class="fact-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.8">
+          <circle cx="18" cy="18" r="14"/>
+          <path d="M14 12h6a4 4 0 010 8H14v-8z" stroke-width="1.6"/>
+          <path d="M14 20h7a4 4 0 010 8H14v-8z" stroke-width="1.6"/>
+          <line x1="16" y1="10" x2="16" y2="12"/>
+          <line x1="20" y1="10" x2="20" y2="12"/>
+          <line x1="16" y1="28" x2="16" y2="30"/>
+          <line x1="20" y1="28" x2="20" y2="30"/>
+        </svg>
+      </div>
+      <div>
+        <span class="f-label">Currency</span>
+        <span class="f-val">Thai Baht</span>
+        <span class="f-sub">(THB)</span>
+      </div>
+    </div>
+    <!-- Airplane icon -->
+    <div class="fact">
+      <div class="fact-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.8">
+          <path d="M6 20 L30 12 L28 20 L18 22 L16 30 L12 28 L14 22 L6 20Z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="f-label">Flight Time</span>
+        <span class="f-val">4 – 5 Hours</span>
+        <span class="f-sub">from India</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEASONS -->
+<section class="seasons-section">
+  <div class="seasons-inner reveal">
+    <div class="season-photo">
+      <div class="season-photo-bg"></div>
+    </div>
+    <div class="season-right">
+      <span class="s-eyebrow">When to Go</span>
+      <h2 class="s-title">Thailand in Every Season</h2>
+      <p class="s-body">From sun-kissed beaches to lush green landscapes and vibrant festivals, Thailand welcomes you all year round. Choose your perfect season to explore.</p>
+      <div class="season-cards">
+        <!-- NOV-FEB: navy filled, featured -->
+        <div class="scard featured">
+          <div class="scard-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div class="scard-period">NOV – FEB</div>
+          <div class="scard-vibe">Cool &amp; Pleasant</div>
+          <div class="scard-desc">Best overall time with clear skies, calm seas and festive vibes.</div>
+        </div>
+        <!-- MAR-MAY: white -->
+        <div class="scard">
+          <div class="scard-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div class="scard-period">MAR – MAY</div>
+          <div class="scard-vibe">Hot &amp; Sunny</div>
+          <div class="scard-desc">Perfect for beach lovers and island getaways.</div>
+        </div>
+        <!-- JUN-OCT: white -->
+        <div class="scard">
+          <div class="scard-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+          </div>
+          <div class="scard-period">JUN – OCT</div>
+          <div class="scard-vibe">Green Season</div>
+          <div class="scard-desc">Lush landscapes, fewer crowds and great deals.</div>
+        </div>
+        <!-- PEAK SEASON: white -->
+        <div class="scard">
+          <div class="scard-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="scard-period">PEAK SEASON</div>
+          <div class="scard-vibe">Nov – Feb</div>
+          <div class="scard-desc">Festivals, holidays and the most vibrant energy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ICONIC DESTINATIONS -->
+<section class="dest-section">
+  <span class="dest-eyebrow reveal">Iconic Destinations</span>
+  <div class="dest-grid reveal">
+    <div class="dcard">
+      <div class="dcard-bg" style="background-image:url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=900&q=85&auto=format&fit=crop')"></div>
+      <div class="dcard-overlay"></div>
+      <div class="dcard-body">
+        <div class="dcard-icon">
+          <!-- Temple silhouette -->
+          <svg viewBox="0 0 32 32"><line x1="16" y1="2" x2="16" y2="6" stroke-width="1.5"/><path d="M8 10L16 5L24 10"/><rect x="10" y="10" width="12" height="4"/><path d="M6 16L16 11L26 16"/><rect x="7" y="16" width="18" height="4"/><rect x="11" y="20" width="10" height="10"/></svg>
+        </div>
+        <div class="dcard-name">Bangkok</div>
+        <div class="dcard-sub">The Vibrant City</div>
+        <div class="dcard-desc">Grand palaces, rooftop views, luxury shopping and nightlife that never sleeps.</div>
+      </div>
+    </div>
+    <div class="dcard">
+      <div class="dcard-bg" style="background-image:url('Images/Krabi.jpg')"></div>
+      <div class="dcard-overlay"></div>
+      <div class="dcard-body">
+        <div class="dcard-icon">
+          <!-- Palm trees island -->
+          <svg viewBox="0 0 32 32"><line x1="16" y1="10" x2="16" y2="28"/><path d="M16 10 Q8 4 6 8 Q10 8 16 14"/><path d="M16 10 Q22 2 26 6 Q22 8 16 14"/><path d="M10 26 Q16 24 22 26" stroke-width="2"/></svg>
+        </div>
+        <div class="dcard-name">Krabi</div>
+        <div class="dcard-sub">Island Paradise</div>
+        <div class="dcard-desc">Crystal waters, iconic islands and unforgettable adventures await you.</div>
+      </div>
+    </div>
+    <div class="dcard">
+      <div class="dcard-bg" style="background-image:url('Images/Chiang MIa.jpg')"></div>
+      <div class="dcard-overlay"></div>
+      <div class="dcard-body">
+        <div class="dcard-icon">
+          <!-- Star/temple -->
+          <svg viewBox="0 0 32 32"><polygon points="16,3 19,12 28,12 21,18 24,27 16,21 8,27 11,18 4,12 13,12"/></svg>
+        </div>
+        <div class="dcard-name">Chiang Mai</div>
+        <div class="dcard-sub">Cultural Heart</div>
+        <div class="dcard-desc">Ancient temples, mountain air, local traditions and soulful experiences.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THINGS TO DO -->
+<section class="things-section">
+  <span class="things-eyebrow reveal">Things to Do in Thailand</span>
+  <div class="things-grid reveal">
+    <!-- Island Hopping: palm island -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <ellipse cx="18" cy="28" rx="10" ry="3"/>
+          <line x1="18" y1="12" x2="18" y2="28"/>
+          <path d="M18 12 Q10 6 8 10 Q12 10 18 16"/>
+          <path d="M18 12 Q24 5 28 8 Q24 10 18 16"/>
+        </svg>
+      </div>
+      <div class="titem-name">Island Hopping</div>
+      <div class="titem-desc">Explore stunning islands &amp; hidden lagoons</div>
+    </div>
+    <!-- Temple Trails: pagoda -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <line x1="18" y1="4" x2="18" y2="7"/>
+          <path d="M12 9L18 5L24 9"/>
+          <rect x="13" y="9" width="10" height="4"/>
+          <path d="M9 15L18 11L27 15"/>
+          <rect x="10" y="15" width="16" height="4"/>
+          <rect x="13" y="19" width="10" height="11"/>
+        </svg>
+      </div>
+      <div class="titem-name">Temple Trails</div>
+      <div class="titem-desc">Discover Thailand's sacred temples and cultural heritage</div>
+    </div>
+    <!-- Elephant Sanctuaries: elephant -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <path d="M8 24 Q6 18 8 14 Q8 8 14 8 Q18 6 22 8 L26 8 Q30 8 30 12 Q30 16 26 16 L24 16 Q24 20 22 22 L22 30 L18 30 L18 24 L14 24 L14 30 L10 30 L10 24 Z"/>
+          <circle cx="12" cy="12" r="1.5" fill="#d32f2f" stroke="none"/>
+          <path d="M26 8 Q30 4 32 6"/>
+        </svg>
+      </div>
+      <div class="titem-name">Elephant Sanctuaries</div>
+      <div class="titem-desc">Ethical encounters and wildlife experiences</div>
+    </div>
+    <!-- Street Food: food cart -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <rect x="8" y="14" width="20" height="12" rx="1"/>
+          <path d="M10 14 L12 8 L24 8 L26 14"/>
+          <line x1="8" y1="26" x2="28" y2="26"/>
+          <circle cx="12" cy="30" r="3"/>
+          <circle cx="24" cy="30" r="3"/>
+          <line x1="15" y1="26" x2="15" y2="30"/>
+          <line x1="21" y1="26" x2="21" y2="30"/>
+        </svg>
+      </div>
+      <div class="titem-name">Street Food Adventures</div>
+      <div class="titem-desc">Savor authentic Thai flavors on local streets</div>
+    </div>
+    <!-- Snorkelling: diving mask -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <path d="M8 16 Q8 10 14 10 L22 10 Q28 10 28 16 L28 20 Q28 24 24 24 L12 24 Q8 24 8 20 Z"/>
+          <ellipse cx="18" cy="17" rx="5" ry="4"/>
+          <line x1="28" y1="14" x2="32" y2="12"/>
+          <line x1="28" y1="18" x2="32" y2="18"/>
+        </svg>
+      </div>
+      <div class="titem-name">Snorkelling &amp; Diving</div>
+      <div class="titem-desc">Vibrant coral reefs and marine life await</div>
+    </div>
+    <!-- Wellness & Spa: lotus flower -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <path d="M18 28 Q10 22 10 16 Q10 10 18 8 Q26 10 26 16 Q26 22 18 28Z"/>
+          <path d="M18 28 Q8 20 8 14 Q10 8 14 8 Q14 14 18 18"/>
+          <path d="M18 28 Q28 20 28 14 Q26 8 22 8 Q22 14 18 18"/>
+          <line x1="18" y1="28" x2="18" y2="32"/>
+          <path d="M14 32 Q18 30 22 32"/>
+        </svg>
+      </div>
+      <div class="titem-name">Wellness &amp; Spa</div>
+      <div class="titem-desc">Rejuvenate mind, body and soul with Thai wellness</div>
+    </div>
+    <!-- Festivals & Events: decorative lamp/jar -->
+    <div class="titem">
+      <div class="titem-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#d32f2f" stroke-width="1.5">
+          <line x1="18" y1="4" x2="18" y2="8"/>
+          <path d="M12 8 Q18 6 24 8 L22 20 Q18 24 14 20 Z"/>
+          <path d="M14 20 Q10 22 10 26 L26 26 Q26 22 22 20"/>
+          <rect x="12" y="26" width="12" height="3" rx="1"/>
+          <line x1="10" y1="12" x2="8" y2="10"/>
+          <line x1="26" y1="12" x2="28" y2="10"/>
+        </svg>
+      </div>
+      <div class="titem-name">Festivals &amp; Events</div>
+      <div class="titem-desc">Celebrate vibrant festivals and local traditions</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM BAND: Month Guide left, Trust Bar right -->
+<div class="bottom-band">
+  <!-- LEFT: Month Guide -->
+  <div class="month-col reveal">
+    <span class="month-label">Thailand Month Guide</span>
+    <div class="month-grid">
+      <div class="mcell"><span class="mname">JAN</span><span class="mdot dot-ex"></span></div>
+      <div class="mcell"><span class="mname">FEB</span><span class="mdot dot-ex"></span></div>
+      <div class="mcell"><span class="mname">MAR</span><span class="mdot dot-good"></span></div>
+      <div class="mcell"><span class="mname">APR</span><span class="mdot dot-good"></span></div>
+      <div class="mcell"><span class="mname">MAY</span><span class="mdot dot-bud"></span></div>
+      <div class="mcell"><span class="mname">JUN</span><span class="mdot dot-bud"></span></div>
+      <div class="mcell"><span class="mname">JUL</span><span class="mdot dot-good"></span></div>
+      <div class="mcell"><span class="mname">AUG</span><span class="mdot dot-good"></span></div>
+      <div class="mcell"><span class="mname">SEP</span><span class="mdot dot-good"></span></div>
+      <div class="mcell"><span class="mname">OCT</span><span class="mdot dot-good"></span></div>
+      <div class="mcell"><span class="mname">NOV</span><span class="mdot dot-ex"></span></div>
+      <div class="mcell"><span class="mname">DEC</span><span class="mdot dot-ex"></span></div>
+    </div>
+    <div class="month-legend">
+      <div class="mleg"><span class="mleg-dot dot-ex"></span>Excellent</div>
+      <div class="mleg"><span class="mleg-dot dot-good"></span>Good</div>
+      <div class="mleg"><span class="mleg-dot dot-bud"></span>Budget Friendly</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Trust Bar -->
+  <div class="trust-col reveal">
+    <div class="tbar">
+      <div class="tbar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <div><div class="tbar-title">Tailored for You</div><div class="tbar-desc">Every itinerary is custom designed</div></div>
+    </div>
+    <div class="tbar">
+      <div class="tbar-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><div class="tbar-title">Expert Guidance</div><div class="tbar-desc">From planning to your return</div></div>
+    </div>
+    <div class="tbar">
+      <div class="tbar-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div><div class="tbar-title">Handpicked Stays</div><div class="tbar-desc">Luxury properties we love</div></div>
+    </div>
+    <div class="tbar">
+      <div class="tbar-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="tbar-title">24/7 Support</div><div class="tbar-desc">Always here whenever you need</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- YOUR THAILAND JOURNEY AWAITS — full width CTA -->
+<div class="journey-cta reveal" id="plan">
+  <div class="journey-bg"></div>
+  <div class="journey-overlay"></div>
+  <div class="journey-text">
+    <span class="journey-eyebrow">Ready to Experience</span>
+    <h2 class="journey-title">Your Thailand<br>Journey Awaits</h2>
+    <p class="journey-sub">Every journey we create is as unique as you are. Let's design your extraordinary escape.</p>
+  </div>
+  <div class="journey-actions">
+    <a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20Thailand%20trip." class="journey-btn" target="_blank" rel="noopener">
+      Start Planning
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a href="tel:+917410747800" class="journey-call">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.5A2 2 0 013.59 1.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 9.06a16 16 0 006 6l.92-.92a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Or call us directly
+    </a>
+  </div>
+  <div class="yaksha"></div>
+</div>
+
+<!-- FOOTER — exact from bali file -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <span class="footer-tagline">Not Just Planned — Personalized!</span>
+    </div>
+    <div class="footer-links">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="why-us.html">Why Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Destinations</h5>
+      <ul>
+        <li><a href="dest-thailand.html">Thailand</a></li>
+        <li><a href="dest-dubai.html">Dubai</a></li>
+        <li><a href="dest-usa.html">United States</a></li>
+        <li><a href="dest-bali.html">Bali</a></li>
+        <li><a href="dest-india.html">Domestic India</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://wa.me/917410747800" target="_blank">WhatsApp Us</a></li>
+        <li><a href="tel:+917410747800">Call Us</a></li>
+        <li><a href="mailto:escapes@mahaveerglobal.in">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Mahaveer Global Escapes. All rights reserved.</p>
+    <span>Designed with ♥ for dreamers</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
