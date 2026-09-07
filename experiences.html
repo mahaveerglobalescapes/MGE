@@ -23,90 +23,46 @@ body{
   overflow-x: hidden; 
   cursor: default;}
 
-/* NAV */
-nav { 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  z-index: 1000; 
-  padding: 0 4%; 
-  display: flex; 
-  min-width: 100%;
-  align-items: center; 
-  justify-content: space-between; 
-  height: 76px; 
-  background: transparent; 
-  transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s; 
+/* =====================
+   NAV — DESKTOP
+   ===================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 4%; display: flex; align-items: center;
+  justify-content: space-between; height: 76px;
+  background: transparent;
+  transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s;
 }
-nav.scrolled { 
-  background: rgba(15,20,100,0.35); 
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
-  border-bottom: 1px solid rgba(255,255,255,0.08); 
+nav.scrolled {
+  background: ;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.nav-logo { 
-  cursor: default;
-  margin-top: 7px;
-  margin-left: -50px; 
-}
-.nav-logo img { 
-  height: 50px; 
-  -ms-transform-origin-y: contain;
-}
-.nav-logo-text { 
-  color: white; 
-  font-weight: 800; 
-  font-size: 1.1rem; 
-  letter-spacing: 0.08em; 
-}
-.nav-right { 
-  display: flex; 
-  align-items: center; 
-  gap: 40px; 
-}
-.nav-links { 
-  display: flex; 
-  gap: 36px; 
-  list-style: none; 
-  align-items: center; 
-}
-.nav-links a { 
-  color: var(--white); 
-  text-decoration: none; 
-  font-size: 15px; 
-  font-weight: 1000; 
-  letter-spacing: 0.14em; 
-  text-transform: uppercase; 
-  opacity: 0.85; 
-  transition: opacity 0.2s; 
-  white-space: nowrap; 
-}
-.nav-links a:hover, .nav-links a.active { 
-  opacity: 1; 
-}
-.nav-cta { 
-  background: transparent !important; 
-  color: var(--white) !important; 
-  border: 1.5px solid rgba(255,255,255,0.75) !important; 
-  padding: 10px 28px !important; 
-  border-radius: 100px !important; 
-  font-size: 15px !important; 
-  font-weight: 1000 !important; 
-  letter-spacing: 0.12em !important; 
-  text-transform: uppercase !important; 
-  opacity: 1 !important; 
-  transition: background 0.25s, border-color 0.25s !important; 
-}
-.nav-cta:hover { 
-  background: rgba(255,255,255,0.15) !important; 
-  border-color: white !important; 
-}
+.nav-logo { cursor: pointer; margin-top: 7px; flex-shrink: 0; display: inline-flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 50px; object-fit: contain; display: block; }
+.nav-logo-text { color: white; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; display: none; }
+.nav-logo.fallback .nav-logo-text { display: inline-block; }
+.nav-right { display: flex; align-items: center; gap: 40px; }
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-links a { color: #1a2380; text-decoration: none; font-size: 15px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s; white-space: nowrap; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+.nav-cta { background: transparent !important; color: var(--white) !important; border: 1.5px solid rgba(255,255,255,0.75) !important; padding: 10px 28px !important; border-radius: 100px !important; font-size: 15px !important; font-weight: 700 !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; opacity: 1 !important; transition: background 0.25s, border-color 0.25s !important; cursor: pointer !important; }
+.nav-cta:hover { background: rgba(255,255,255,0.15) !important; border-color: white !important; }
+
+
+/* =====================
+   HAMBURGER
+   ===================== */
 .hamburger { 
   display: none; 
   flex-direction: column; 
   gap: 5px; 
-  cursor: default; 
-  padding: 8px; 
+  cursor: pointer; 
+  padding: 8px;
+  z-index: 1100;
+  background: none;
+  border: none;
+  outline: none;
 }
 .hamburger span { 
   width: 24px; 
@@ -115,10 +71,29 @@ nav.scrolled {
   display: block; 
   transition: all 0.3s; 
 }
+.hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* =====================
+   MOBILE NAV DRAWER
+   ===================== */
+.mobile-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(13,21,71,0.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{color:#fff;text-decoration:none;font-size:1.3rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;}
+.mobile-nav a:hover{opacity:1;}
+.mobile-nav-cta{background:var(--teal);color:#fff!important;padding:13px 36px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:1!important;margin-top:8px;}
 
 
 /* HERO */
-.exp-hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;background:#0a1040;overflow:hidden;}
+.exp-hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;background:#0fff;overflow:hidden;}
 .exp-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.35;}
 .exp-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,80,0.5) 0%,rgba(8,14,80,0.7) 100%);}
 .exp-hero-content{position:relative;z-index:2;max-width:800px;}
@@ -209,7 +184,7 @@ nav.scrolled {
 .highlights-strip{display:flex;justify-content:center;gap:0;flex-wrap:wrap;}
 .highlight-item{padding:32px 48px;border-right:1px solid rgba(255,255,255,0.1);text-align:center;flex:1;min-width:180px;}
 .highlight-item:last-child{border-right:none;}
-.highlight-icon{font-size:2rem;margin-bottom:12px;}
+.highlight-icon{font-size:2rem;color:#ffffff;margin-bottom:12px;}
 .highlight-item h4{font-family:'DM Serif Display',serif;font-size:1.1rem;color:white;font-weight:400;margin-bottom:6px;}
 .highlight-item p{font-size:0.75rem;color:rgba(255,255,255,0.45);letter-spacing:0.05em;}
 
@@ -225,7 +200,7 @@ nav.scrolled {
 .decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .decision-card{padding:36px 28px;background:white;border-radius:6px;border-bottom:3px solid var(--navy);text-align:center;transition:transform 0.25s,box-shadow 0.25s;cursor:default;}
 .decision-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(24,30,131,0.1);}
-.decision-card .emoji{font-size:2.8rem;margin-bottom:16px;}
+.decision-card .decision-icon {font-size: 34px;color: var(--navy);margin-bottom: 16px;line-height: 1;}
 .decision-card h4{font-family:'DM Serif Display',serif;font-size:1.2rem;font-weight:400;color:var(--dark);margin-bottom:8px;}
 .decision-card p{font-size:0.83rem;color:var(--text-muted);}
 .decision-card .dest-suggestion{margin-top:12px;display:inline-block;background:var(--light-sky);color:var(--navy);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;border-radius:2px;font-weight:500;}
@@ -242,40 +217,68 @@ nav.scrolled {
 .whatsapp-btn:hover{background:#1dbd5a;transform:translateY(-2px);}
 .whatsapp-btn svg{width:18px;height:18px;fill:white;}
 
-footer{background:#060a2e;padding:40px 5% 24px;}
-.footer-bottom-simple{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-.footer-bottom-simple p{font-size:0.75rem;color:rgba(255,255,255,0.25);}
-.footer-bottom-simple a{font-size:0.75rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;cursor:default;}
-.footer-bottom-simple a:hover{color:var(--sky);}
-.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+/* ── FOOTER ── */
+footer{background:#060a2e;padding:60px 5% 30px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.footer-brand img{height:46px;margin-bottom:16px;display:block;}
+.footer-brand p{font-size:0.9rem;color:rgba(255,255,255,0.35);max-width:260px;line-height:1.7;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--gold);margin-top:8px;display:block;}
+.footer-links h5{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links li a{font-size:0.88rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.footer-links li a:hover{color:var(--sky);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p,.footer-bottom span{font-size:0.73rem;color:rgba(255,255,255,0.22);}
+
 
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 @media(max-width:900px){
-  .nav-links,.nav-cta{display:none;} .hamburger{display:flex;}
+  .nav-links,.nav-cta-btn{display:none;} .hamburger{display:flex;} .mobile-nav{display:flex;}
   .cats-grid{grid-template-columns:1fr 1fr;} .primary-cards{grid-template-columns:1fr;}
   .secondary-cards{grid-template-columns:1fr 1fr;} .decision-grid{grid-template-columns:1fr;}
   .highlights-strip{flex-direction:column;} .highlight-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
 }
+@media(max-width:500px){
+  .facts-row{grid-template-columns:1fr;}
+  .fact:nth-child(odd){border-right:none;}
+  .season-cards{grid-template-columns:1fr 1fr;}
+  .things-grid{grid-template-columns:1fr 1fr;}
+  .trust-col{grid-template-columns:1fr;}
+  .tbar{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.08)!important;}
+  .tbar:last-child{border-bottom:none!important;}
+  .month-grid{grid-template-columns:repeat(3,1fr);}
+}
 </style>
 </head>
 <body>
-<nav>
+<!-- NAV -->
+<nav id="mainNav">
   <a href="index.html" class="nav-logo">
-    <img src="Images\MGE Logo.png" alt="MGE" onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+    <img src="Images/Logo BACKGROUND REMOVED.png" alt="Mahaveer Global Escapes" onerror="this.parentElement.classList.add('fallback'); this.style.display='none';">
+    <span class="nav-logo-text">MGE</span>
   </a>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\experiences.html">Experiences</a></li>
-      <li><a href="D:\Work\Mahaveer Global Escapes\Final Work\Website\why-us.html">Why Us</a></li>
-      <li><a href="D:\Work\Mahaveer Global Escapes\final work\website\about.html">About</a></li>
-      <li><a href="#plan" class="nav-cta">Plan Your Trip</a></li>
-    </ul>
-  </div>
-  <div class="hamburger"><span></span><span></span><span></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#plan" class="nav-cta-btn">Plan My Trip</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+  <a href="why-us.html" class="mobile-nav-link">Why Us</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="#plan" class="mobile-nav-cta mobile-nav-link">Plan My Trip</a>
+</div>
 
 <!-- HERO -->
 <section class="exp-hero">
@@ -378,7 +381,7 @@ footer{background:#060a2e;padding:40px 5% 24px;}
         <p>Rice terraces, sacred temples, private villas and sunsets that stay with you for life. Bali isn't just a destination — it's a feeling.</p>
         <div class="primary-card-meta">
           <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6–10 Days</div>
-          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 65,000 – 1,80,000 </div>
+          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 65,000 – <span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span>1,80,000 </div>
           <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Couples, Families</div>
         </div>
         <a href="journey-bali.html" class="btn-primary-card">Explore Journey →</a>
@@ -395,7 +398,7 @@ footer{background:#060a2e;padding:40px 5% 24px;}
         <p>Overwater bungalows, coral reefs you'll never forget, and an ocean so blue it barely seems real. Pure, uninterrupted paradise.</p>
         <div class="primary-card-meta">
           <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4–7 Days</div>
-          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 1,20,000 – 3,50,000</div>
+          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 1,20,000 – <span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 3,50,000</div>
           <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Couples</div>
         </div>
         <a href="index.html#plan" class="btn-primary-card">Explore Journey →</a>
@@ -415,9 +418,9 @@ footer{background:#060a2e;padding:40px 5% 24px;}
         <p>Cliffside villages, lemon groves and a coastline so dramatic it feels like a painting.</p>
         <div class="secondary-card-meta">
           <div class="meta-item" style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5–8 Days</div>
-          <div class="meta-item" style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>₹1,50,000+</div>
+          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 1,50,000</div>
         </div>
-        <a href="index.html#plan" class="btn-secondary-card">View Details →</a>
+        <a href="dest-amalfi.html" class="btn-secondary-card">View Details →</a>
       </div>
     </div>
     <div class="secondary-card">
@@ -430,9 +433,9 @@ footer{background:#060a2e;padding:40px 5% 24px;}
         <p>Desert safaris, gold souks, rooftop infinity pools and the world's most iconic skyline.</p>
         <div class="secondary-card-meta">
           <div class="meta-item" style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4–6 Days</div>
-          <div class="meta-item" style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>₹60,000 – ₹2,00,000</div>
+          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 60,000 –<span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 2,00,000</div>
         </div>
-        <a href="index.html#plan" class="btn-secondary-card">View Details →</a>
+        <a href="dest-dubai.html" class="btn-secondary-card">View Details →</a>
       </div>
     </div>
     <div class="secondary-card">
@@ -445,9 +448,9 @@ footer{background:#060a2e;padding:40px 5% 24px;}
         <p>Turquoise bays, vibrant street food and temples draped in gold — all at a remarkable value.</p>
         <div class="secondary-card-meta">
           <div class="meta-item" style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6–10 Days</div>
-          <div class="meta-item" style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>₹40,000 – ₹1,00,000</div>
+          <div class="meta-item"><span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span> 40,000 – <span style="font-size:14px;color:var(--sky);font-weight:600;">₹</span>1,00,000</div>
         </div>
-        <a href="index.html#plan" class="btn-secondary-card">View Details →</a>
+        <a href="dest-thailand.html" class="btn-secondary-card">View Details →</a>
       </div>
     </div>
   </div>
@@ -456,10 +459,39 @@ footer{background:#060a2e;padding:40px 5% 24px;}
 <!-- HIGHLIGHTS -->
 <section class="highlights-section">
   <div class="highlights-strip">
-    <div class="highlight-item"><div class="highlight-icon">🏡</div><h4>Private Villa Stays</h4><p>Your own space, your own rules.</p></div>
-    <div class="highlight-item"><div class="highlight-icon">🕯️</div><h4>Scenic Dinners</h4><p>Sunsets, candlelight, ocean views.</p></div>
-    <div class="highlight-item"><div class="highlight-icon">🎭</div><h4>Cultural Experiences</h4><p>Local stories, authentic encounters.</p></div>
-    <div class="highlight-item"><div class="highlight-icon">🗺️</div><h4>Personalized Tours</h4><p>At your pace, your way, every day.</p></div>
+
+    <div class="highlight-item">
+      <div class="highlight-icon">
+        <i class="fa-solid fa-house"></i>
+      </div>
+      <h4>Private Villa Stays</h4>
+      <p>Your own space, your own rules.</p>
+    </div>
+
+    <div class="highlight-item">
+      <div class="highlight-icon">
+        <i class="fa-solid fa-utensils"></i>
+      </div>
+      <h4>Scenic Dinners</h4>
+      <p>Sunsets, candlelight, ocean views.</p>
+    </div>
+
+    <div class="highlight-item">
+      <div class="highlight-icon">
+        <i class="fa-solid fa-masks-theater"></i>
+      </div>
+      <h4>Cultural Experiences</h4>
+      <p>Local stories, authentic encounters.</p>
+    </div>
+
+    <div class="highlight-item">
+      <div class="highlight-icon">
+        <i class="fa-solid fa-map"></i>
+      </div>
+      <h4>Personalized Tours</h4>
+      <p>At your pace, your way, every day.</p>
+    </div>
+
   </div>
 </section>
 
@@ -477,23 +509,31 @@ footer{background:#060a2e;padding:40px 5% 24px;}
   </div>
   <div class="decision-grid reveal">
     <div class="decision-card">
-      <div class="emoji">✈️</div>
-      <h4>First International Trip</h4>
-      <p>Want something manageable, beautiful, and easy to navigate?</p>
-      <span class="dest-suggestion">Try → Bali or Dubai</span>
-    </div>
-    <div class="decision-card">
-      <div class="emoji">💕</div>
-      <h4>Romantic Escape</h4>
-      <p>Looking for privacy, luxury, and moments you'll never forget?</p>
-      <span class="dest-suggestion">Try → Maldives</span>
-    </div>
-    <div class="decision-card">
-      <div class="emoji">💰</div>
-      <h4>On a Budget</h4>
-      <p>Want maximum experience without breaking the bank?</p>
-      <span class="dest-suggestion">Try → Thailand</span>
-    </div>
+  <div class="decision-icon">
+    <i class="fa-solid fa-earth-asia"></i>
+  </div>
+  <h4>First International Trip</h4>
+  <p>Want something manageable, beautiful, and easy to navigate?</p>
+  <span class="dest-suggestion">Try → Bali or Dubai</span>
+</div>
+
+<div class="decision-card">
+  <div class="decision-icon">
+    <i class="fa-regular fa-heart"></i>
+  </div>
+  <h4>Romantic Escape</h4>
+  <p>Looking for privacy, luxury, and moments you'll never forget?</p>
+  <span class="dest-suggestion">Try → Maldives</span>
+</div>
+
+<div class="decision-card">
+  <div class="decision-icon">
+    <i class="fa-solid fa-gem"></i>
+  </div>
+  <h4>On a Budget</h4>
+  <p>Want maximum experience without breaking the bank?</p>
+  <span class="dest-suggestion">Try → Thailand</span>
+</div>
   </div>
 </section>
 
@@ -503,29 +543,68 @@ footer{background:#060a2e;padding:40px 5% 24px;}
   <h2>Let's Design Your Journey</h2>
   <p>Tell us what you're looking for — we'll take it from there.</p>
   <div class="final-cta-btns">
-    <a href="index.html#plan" class="btn-white">Plan Your Journey</a>
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20plan%20a%20trip." class="whatsapp-btn" target="_blank">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Message Us on WhatsApp
-    </a>
+    <a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip." class="btn-white" target="_blank"> Plan Your Journey </a>
   </div>
 </section>
 
+<!-- FOOTER — FINAL LOCKED VERSION -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
       <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
       <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
-      <p class="footer-tagline">Not Just Planned — Personalized!</p>
+      <span class="footer-tagline">Not Just Planned — Personalized!</span>
     </div>
-    <div class="footer-links"><h5>Navigate</h5><ul><li><a href="index.html">Home</a></li><li><a href="experiences.html">Experiences</a></li><li><a href="why-us.html">Why Us</a></li><li><a href="about.html">About</a></li></ul></div>
-    <div class="footer-links"><h5>Destinations</h5><ul><li><a href="experiences.html">Japan &amp; China</a></li><li><a href="experiences.html">Dubai</a></li><li><a href="experiences.html">United States</a></li><li><a href="experiences.html">Sri Lanka</a></li><li><a href="experiences.html">Domestic India</a></li></ul></div>
-    <div class="footer-links"><h5>Contact</h5><ul><li><a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp Us</a></li><li><a href="tel:+91XXXXXXXXXX">Call Us</a></li><li><a href="mailto:hello@mahaveerglobalescapes.com">Email Us</a></li></ul></div>
+    <div class="footer-links">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="why-us.html">Why Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Destinations</h5>
+      <ul>
+        <li><a href="dest-thailand.html">Thailand</a></li>
+        <li><a href="dest-dubai.html">Dubai</a></li>
+        <li><a href="dest-usa.html">United States</a></li>
+        <li><a href="dest-bali.html">Bali</a></li>
+        <li><a href="dest-india.html">Domestic India</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://wa.me/917410747800" target="_blank">WhatsApp Us</a></li>
+        <li><a href="tel:+917410747800">Call Us</a></li>
+        <li><a href="mailto:escapes@mahaveerglobal.in">Email Us</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-bottom"><p>© 2025 Mahaveer Global Escapes. All rights reserved.</p><span>Designed with ✦ for dreamers</span></div>
+  <div class="footer-bottom">
+    <p>© 2025 Mahaveer Global Escapes. All rights reserved.</p>
+  </div>
 </footer>
 
 <script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
 const reveals=document.querySelectorAll('.reveal');
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
 reveals.forEach(el=>obs.observe(el));
