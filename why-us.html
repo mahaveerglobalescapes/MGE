@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Us — Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --navy: #181e83; --sky: #788ddc; --white: #ffffff; --cream: #f9f7f2;
+  --dark: #0c1147; --gold: #c8a96e; --light-sky: #dde4f5;
+  --text-dark: #1a1a2e; --text-muted: #6b7280;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-dark);
+  background: var(--white);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* =====================
+   NAV — DESKTOP (from Experiences page)
+   ===================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 4%; display: flex; align-items: center;
+  justify-content: space-between; height: 76px;
+  background: transparent;
+  transition: background 0.5s, backdrop-filter 0.5s, box-shadow 0.5s;
+}
+nav.scrolled {
+  background: #dde4f5;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-logo { cursor: pointer; margin-top: 7px; flex-shrink: 0; display: inline-flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 50px; object-fit: contain; display: block; }
+.nav-logo-text { color: rgb(255, 255, 255); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; display: none; }
+.nav-logo.fallback .nav-logo-text { display: inline-block; }
+.nav-right { display: flex; align-items: center; gap: 40px; }
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-links a { color: #1a2380; text-decoration: none; font-size: 15px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s; white-space: nowrap; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+.nav-cta { background: transparent !important; color: var !important; border: 1.5px solid rgba(255,255,255,0.75) !important; padding: 10px 28px !important; border-radius: 100px !important; font-size: 15px !important; font-weight: 700 !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; opacity: 1 !important; transition: background 0.25s, border-color 0.25s !important; cursor: pointer !important; }
+.nav-cta:hover { background: rgba(255,255,255,0.15) !important; border-color: #1a2380 !important; }
+
+
+
+/* =====================
+   HAMBURGER
+   ===================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: default;
+  padding: 8px;
+  z-index: 1100;
+  background: none;
+  border: none;
+  outline: none;
+}
+.hamburger span {
+  width: 24px;
+  height: 1.5px;
+  background: white;
+  display: block;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* =====================
+   MOBILE NAV DRAWER
+   ===================== */
+.mobile-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(13,21,71,0.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{color:#fff;text-decoration:none;font-size:1.3rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;}
+.mobile-nav a:hover{opacity:1;}
+.mobile-nav-cta{background:var(--navy);color:#fff!important;padding:13px 36px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:1!important;margin-top:8px;}
+
+/* =====================
+   HERO — color/treatment from Experiences page, copy from Why Us
+   ===================== */
+.exp-hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;overflow:hidden;}
+.exp-hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80&auto=format&fit=crop');background-size:cover;background-position:center;opacity:0.35;}
+.exp-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,80,0.5) 0%,rgba(8,14,80,0.7) 100%);}
+.exp-hero-content{position:relative;z-index:2;max-width:800px;}
+.exp-hero-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.exp-hero-label::before{content:'';width:28px;height:1.5px;background:var(--gold);}
+.exp-hero-title{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;color:white;line-height:1.1;margin-bottom:20px;opacity:0;animation:fadeUp 0.9s 0.2s ease forwards;}
+.exp-hero-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:0;max-width:560px;margin-left:auto;margin-right:auto;opacity:0;animation:fadeUp 0.9s 0.45s ease forwards;}
+.exp-hero-sub em{font-style:italic;color:rgba(255,255,255,0.92);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* =====================
+   SHARED SECTION LABELS/TITLES
+   ===================== */
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--navy);margin-bottom:20px;font-weight:500;}
+.section-label::before{content:'';width:28px;height:1.5px;background:var(--gold);}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;color:var(--dark);margin-bottom:16px;line-height:1.15;}
+.section-title em{font-style:italic;color:var(--navy);}
+
+/* =====================
+   PHILOSOPHY (Why Us template — unchanged)
+   ===================== */
+.philosophy-section{padding:100px 5%;background:var(--white);}
+.phi-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.phi-text h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:400;color:var(--dark);line-height:1.15;margin-bottom:20px;}
+.phi-text h2 em{font-style:italic;color:var(--navy);}
+.phi-text p{font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:16px;}
+.phi-visual{position:relative;}
+.phi-quote-block{background:var(--dark);padding:52px 44px;border-radius:6px;position:relative;}
+.phi-quote-block::before{content:'"';font-family:'DM Serif Display',serif;font-size:8rem;color:rgba(120,141,220,0.15);position:absolute;top:-20px;left:24px;line-height:1;}
+.phi-quote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:white;line-height:1.65;}
+.phi-quote-author{margin-top:20px;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
+.phi-accent{position:absolute;bottom:-20px;right:-20px;width:120px;height:120px;background:var(--light-sky);border-radius:50%;z-index:-1;opacity:0.6;}
+
+/* =====================
+   WHAT MAKES US DIFFERENT (Why Us template — unchanged)
+   ===================== */
+.different-section{padding:100px 5%;background:var(--cream);}
+.different-header{text-align:center;margin-bottom:60px;}
+.different-header .section-label{justify-content:center;}
+.diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.diff-card{padding:36px 32px;background:white;border-radius:6px;border-left:3px solid var(--navy);transition:transform 0.25s,box-shadow 0.25s;}
+.diff-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(24,30,131,0.09);}
+.diff-card-num{font-family:'DM Serif Display',serif;font-size:3rem;color:var(--light-sky);line-height:1;margin-bottom:12px;}
+.diff-card h3{font-size:1.1rem;font-weight:500;color:var(--dark);margin-bottom:10px;}
+.diff-card p{font-size:0.85rem;color:var(--text-muted);line-height:1.75;}
+
+/* =====================
+   EXPERIENCE STRIP (Why Us template — icons swapped to Experiences' icon language)
+   ===================== */
+.exp-strip{padding:60px 5%;background:var(--navy);}
+.strip-inner{display:flex;justify-content:center;gap:0;flex-wrap:wrap;}
+.strip-item{padding:28px 44px;border-right:1px solid rgba(255,255,255,0.1);text-align:center;flex:1;min-width:160px;}
+.strip-item:last-child{border-right:none;}
+.strip-icon{font-size:2rem;color:#ffffff;margin-bottom:10px;}
+.strip-item h4{font-family:'DM Serif Display',serif;font-size:1rem;color:white;font-weight:400;margin-bottom:4px;}
+.strip-item p{font-size:0.72rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em;}
+
+/* =====================
+   TRUST (Why Us template — icons swapped to Experiences' icon language)
+   ===================== */
+.trust-section{padding:100px 5%;background:var(--white);}
+.trust-header{text-align:center;margin-bottom:60px;}
+.trust-header .section-label{justify-content:center;}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.trust-card{padding:36px;text-align:center;border:1px solid rgba(24,30,131,0.08);border-radius:6px;transition:border-color 0.3s,transform 0.25s;}
+.trust-card:hover{border-color:var(--sky);transform:translateY(-5px);}
+.trust-icon{width:60px;height:60px;background:var(--light-sky);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.trust-icon i{font-size:24px;color:var(--navy);}
+.trust-num{font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--dark);margin-bottom:4px;}
+.trust-card h4{font-size:0.95rem;font-weight:500;color:var(--dark);margin-bottom:8px;}
+.trust-card p{font-size:0.82rem;color:var(--text-muted);line-height:1.7;}
+
+/* =====================
+   HUMAN TOUCH (Why Us template — unchanged)
+   ===================== */
+.human-section{padding:120px 5%;background:var(--dark);text-align:center;}
+.human-section p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-style:italic;color:rgba(255,255,255,0.7);line-height:1.65;max-width:600px;margin:0 auto;}
+.human-section p em{color:var(--sky);}
+.human-section p b{font-weight:400;color:white;}
+
+/* =====================
+   FINAL CTA (Why Us template — unchanged)
+   ===================== */
+.final-cta{padding:100px 5%;background:var(--navy);text-align:center;position:relative;overflow:hidden;}
+.final-cta-bg{position:absolute;inset:0;opacity:0.04;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M30 0L35 10H25L30 0zm0 60L25 50H35L30 60zM0 30L10 25V35L0 30zm60 0L50 35V25L60 30z'/%3E%3C/g%3E%3C/svg%3E");}
+.final-cta h2{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);color:white;font-weight:400;margin-bottom:16px;position:relative;}
+.final-cta p{font-size:1.05rem;color:rgba(255,255,255,0.6);margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;position:relative;}
+.final-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;}
+.btn-white{background:white;color:var(--navy);border:none;padding:15px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;cursor:default;text-decoration:none;transition:background 0.2s,transform 0.15s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:12px;background:#25D366;color:white;text-decoration:none;padding:15px 32px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:background 0.2s,transform 0.15s;cursor:default;}
+.whatsapp-btn:hover{background:#1dbd5a;transform:translateY(-2px);}
+.whatsapp-btn svg{width:18px;height:18px;fill:white;}
+
+/* =====================
+   FOOTER (from Experiences page)
+   ===================== */
+footer{background:#060a2e;padding:60px 5% 30px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.footer-brand img{height:46px;margin-bottom:16px;display:block;}
+.footer-brand p{font-size:0.9rem;color:rgba(255,255,255,0.35);max-width:260px;line-height:1.7;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--gold);margin-top:8px;display:block;}
+.footer-links h5{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links li a{font-size:0.88rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;cursor:default;}
+.footer-links li a:hover{color:var(--sky);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p,.footer-bottom span{font-size:0.73rem;color:rgba(255,255,255,0.22);}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  .nav-links{display:none;} .hamburger{display:flex;} .mobile-nav{display:flex;}
+  .phi-inner{grid-template-columns:1fr;}
+  .diff-grid{grid-template-columns:1fr;}
+  .trust-grid{grid-template-columns:1fr 1fr;}
+  .strip-inner{flex-direction:column;} .strip-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);}
+}
+@media(max-width:500px){
+  .trust-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="mainNav" class="scrolled">
+  <a href="index.html" class="nav-logo">
+    <img src="Images/Logo BACKGROUND REMOVED.png" alt="Mahaveer Global Escapes" onerror="this.parentElement.classList.add('fallback'); this.style.display='none';">
+    <span class="nav-logo-text">MGE</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="why-us.html" class="active">Why Us</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip.">Plan My Trip</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+  <a href="why-us.html" class="mobile-nav-link">Why Us</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip.">Plan My Trip</a>
+</div>
+
+<!-- HERO -->
+<section class="exp-hero">
+  <div class="exp-hero-bg"></div>
+  <div class="exp-hero-overlay"></div>
+  <div class="exp-hero-content">
+    <div class="exp-hero-label">Why Choose Us</div>
+    <h1 class="exp-hero-title">Why We Do Things<br><em style="font-style:italic;">Differently</em></h1>
+    <p class="exp-hero-sub">We don't believe in fixed itineraries.<br><em>We believe in journeys that feel personal.</em></p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="phi-inner">
+    <div class="phi-text reveal">
+      <div class="section-label">Our Core Philosophy</div>
+      <h2>Travel isn't a<br><em>transaction.</em></h2>
+      <p>For most travel agencies, you're a booking. For us, you're a person with a story, a budget, a dream — and that difference changes everything about how we work.</p>
+      <p>We don't pull out a template and fill in your name. We start from scratch, every single time. We ask questions others don't ask. We think about what will genuinely delight you — not just what's logistically easy for us.</p>
+      <p>That's the philosophy. Everything else flows from it.</p>
+    </div>
+    <div class="phi-visual reveal">
+      <div class="phi-quote-block">
+        <p class="phi-quote">"The best journey is one that feels like it was made just for you. Because it was."</p>
+        <p class="phi-quote-author">— Mahaveer Global Escapes</p>
+      </div>
+      <div class="phi-accent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES US DIFFERENT -->
+<section class="different-section">
+  <div class="different-header reveal">
+    <div class="section-label">What Sets Us Apart</div>
+    <h2 class="section-title">Built Different.<br><em>By Design.</em></h2>
+  </div>
+  <div class="diff-grid reveal">
+    <div class="diff-card">
+      <div class="diff-card-num">01</div>
+      <h3>No Fixed Packages</h3>
+      <p>We have zero pre-set itineraries. Every trip is built from scratch based on what you tell us — your dates, your interests, your budget, your people.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-card-num">02</div>
+      <h3>We Actually Listen</h3>
+      <p>Before we plan anything, we understand. What you want, what you don't want, what you're worried about. Most agencies skip this part. We don't.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-card-num">03</div>
+      <h3>No Upselling. Ever.</h3>
+      <p>We're not here to push you toward the most expensive option. We're here to give you the best value for your budget — whatever that budget is.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-card-num">04</div>
+      <h3>We're With You, Always</h3>
+      <p>Our job doesn't end when you board the flight. We're available throughout your journey — every day, every question, every unexpected situation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE STRIP -->
+<section class="exp-strip">
+  <div class="strip-inner">
+    <div class="strip-item"><div class="strip-icon"><i class="fa-solid fa-house"></i></div><h4>Private Stays</h4><p>Villas & boutique hotels</p></div>
+    <div class="strip-item"><div class="strip-icon"><i class="fa-solid fa-sun"></i></div><h4>Scenic Experiences</h4><p>Curated moments, not crowds</p></div>
+    <div class="strip-item"><div class="strip-icon"><i class="fa-solid fa-map"></i></div><h4>Local Insights</h4><p>Beyond the tourist trail</p></div>
+    <div class="strip-item"><div class="strip-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><h4>Seamless Planning</h4><p>Every detail handled for you</p></div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="trust-header reveal">
+    <div class="section-label">Why Travellers Trust Us</div>
+    <h2 class="section-title">The Numbers<br><em>Speak</em></h2>
+  </div>
+  <div class="trust-grid reveal">
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="trust-num">13+</div>
+      <h4>Journeys Curated</h4>
+      <p>Each one built from scratch, shaped entirely around the traveller who asked for it.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-star"></i></div>
+      <div class="trust-num">100%</div>
+      <h4>Client Satisfaction</h4>
+      <p>Every traveller we've served has left happy — and most have come back for more.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-earth-asia"></i></div>
+      <div class="trust-num">3+</div>
+      <h4>Countries Covered</h4>
+      <p>From Southeast Asia to the Middle East — and growing with every season.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HUMAN TOUCH -->
+<section class="human-section">
+  <p>"This isn't a system.<br><em>It's a conversation.</em><br><br><b>We take the time to understand,<br>before we plan.</b>"</p>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-bg"></div>
+  <h2>Let's Design Your Journey</h2>
+  <p>Tell us what you're looking for — we'll take it from there.</p>
+  <div class="final-cta-btns">
+    <a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip." class="btn-white" target="_blank"> Plan Your Journey </a>
+  </div>
+</section>
+
+<!-- FOOTER — same structure as Experiences page -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <span class="footer-tagline">Not Just Planned — Personalized!</span>
+    </div>
+    <div class="footer-links">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="why-us.html">Why Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Destinations</h5>
+      <ul>
+        <li><a href="dest-thailand.html">Thailand</a></li>
+        <li><a href="dest-dubai.html">Dubai</a></li>
+        <li><a href="dest-usa.html">United States</a></li>
+        <li><a href="dest-bali.html">Bali</a></li>
+        <li><a href="dest-india.html">Domestic India</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://wa.me/917410747800" target="_blank">WhatsApp Us</a></li>
+        <li><a href="tel:+917410747800">Call Us</a></li>
+        <li><a href="mailto:escapes@mahaveerglobal.in">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Mahaveer Global Escapes. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60 || window.scrollY <= 60));
+
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.12});
+reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India — Land of Wonders | Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══ TOKENS ══ nav/footer palette kept from the shared template; content sections use a new India-specific accent set */
+:root{
+  --navy:#1a237e;--sky:#5c7dd4;--white:#fff;
+  --cream:#f9f7f2;--dark:#0d1547;--gold:#c8a96e;
+  --light-sky:#dde4f5;--text-dark:#1a1a2e;--text-muted:#6b7280;
+  --teal:#1a7a7a;--teal-mid:#1e8f8f;--teal-light:#2ab5b5;
+  --red:#d32f2f;
+
+  /* India content palette */
+  --maroon:#8a1538;--maroon-dark:#5c0f26;--saffron:#d9822b;
+  --saffron-light:#f0a94e;--sand:#faf4e9;--ink:#241016;
+  --ink-muted:#7c6a63;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:#fff;overflow-x:hidden;}
+
+/* ══ NAV — exact from dest-thailand.html / dest-bali.html ══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;height:72px;background:transparent;transition:background 0.4s;}
+nav.scrolled{background:rgba(215, 219, 240, 0.92);backdrop-filter:blur(16px);}
+.nav-logo{cursor:default;display:flex;align-items:center;gap:10px;}
+.nav-logo img{height:48px;object-fit:contain;}
+.nav-logo-text{color:white;font-weight:800;font-size:1rem;letter-spacing:0.06em;}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{color:#1a2380;text-decoration:none;font-size:13.5px;font-weight:1000;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta-btn{background:var(--teal)!important;color:#fff!important;border:none!important;padding:10px 24px!important;border-radius:24px!important;font-size:13px!important;font-weight:700!important;letter-spacing:0.1em!important;text-transform:uppercase!important;opacity:1!important;transition:background 0.2s!important;}
+.nav-cta-btn:hover{background:#155f5f!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;outline:none;z-index:1100;}
+.hamburger span{width:24px;height:1.5px;background:white;display:block;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(13,21,71,0.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mobile-nav.open{opacity:1;pointer-events:all;}
+.mobile-nav a{color:#fff;text-decoration:none;font-size:1.3rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.85;}
+.mobile-nav a:hover{opacity:1;}
+.mobile-nav-cta{background:var(--teal);color:#fff!important;padding:13px 36px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;opacity:1!important;margin-top:8px;}
+
+/* ══ REVEAL ══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════════════════
+   HERO — India
+   Full viewport, Rajasthan/Taj-style photo
+   LEFT text block: "Welcome to" script, "INDIA" massive,
+   "LAND OF WONDERS" saffron uppercase, divider + motif,
+   body text, saffron pill CTA
+══════════════════════════════════ */
+.hero{
+  position:relative;
+  height:100vh;min-height:640px;
+  overflow:hidden;
+  display:flex;align-items:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1920&q=90&auto=format&fit=crop') center/cover no-repeat;
+  animation:slowZoom 20s ease-in-out infinite alternate;
+}
+@keyframes slowZoom{from{transform:scale(1.04);}to{transform:scale(1.10);}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(250,244,233,0.86) 0%,rgba(250,244,233,0.46) 45%,transparent 72%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 6%;
+  padding-top:72px;
+  max-width:580px;
+  animation:fadeUp 0.9s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-welcome{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:2rem;
+  font-weight:400;
+  color:var(--maroon);
+  margin-bottom:2px;
+  letter-spacing:0.04em;
+}
+.hero-h1{
+  font-family:'DM Serif Display',serif;
+  font-weight:400;
+  font-size:clamp(5rem,12.5vw,9.5rem);
+  color:var(--ink);
+  line-height:0.88;
+  letter-spacing:-0.02em;
+  margin-bottom:10px;
+}
+.hero-island{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-size:0.82rem;font-weight:800;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--saffron);
+  margin-bottom:8px;
+}
+.hero-divider-wrap{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:18px;
+}
+.hero-divider-line{flex:1;height:1px;background:var(--saffron);opacity:0.5;}
+.hero-motif{width:22px;height:22px;flex-shrink:0;}
+
+.hero-sub{
+  font-size:1rem;font-weight:400;
+  color:#3a2e2a;
+  line-height:1.6;
+  margin-bottom:28px;
+  max-width:360px;
+}
+.hero-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--maroon);color:#fff;text-decoration:none;
+  padding:14px 28px;border-radius:4px;
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  transition:background 0.2s;
+}
+.hero-btn:hover{background:var(--maroon-dark);}
+.hero-btn svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.5;}
+
+/* ══════════════════════════════════
+   REGIONS OF INDIA
+   Sand bg, centered header, 4 tall region cards
+   (North / South / East / West) each a photo card
+   that lifts on hover with a maroon ribbon label
+══════════════════════════════════ */
+.regions{
+  background:var(--sand);
+  padding:76px 5%;
+}
+.regions-header{
+  text-align:center;
+  max-width:640px;
+  margin:0 auto 48px;
+}
+.rg-eyebrow{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:14px;
+}
+.rg-title{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:clamp(1.8rem,3.4vw,2.7rem);
+  color:var(--ink);line-height:1.2;margin-bottom:14px;
+}
+.rg-sub{
+  font-size:0.92rem;color:var(--ink-muted);line-height:1.7;
+}
+.regions-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  max-width:1180px;margin:0 auto;
+}
+.region-card{
+  position:relative;overflow:hidden;
+  border-radius:6px;
+  aspect-ratio:3/4.3;
+  cursor:default;
+  box-shadow:0 14px 30px -18px rgba(90,20,40,0.35);
+  transition:transform 0.4s ease;
+}
+.region-card:hover{transform:translateY(-8px);}
+.region-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.6s ease;
+}
+.region-card:hover img{transform:scale(1.08);}
+.region-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(36,16,22,0.88) 0%, rgba(36,16,22,0.1) 55%, transparent 75%);
+}
+.region-card-body{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:20px 18px;
+}
+.region-card-dir{
+  display:block;font-size:9.5px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--saffron-light);margin-bottom:6px;
+}
+.region-card-name{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:1.4rem;color:#fff;line-height:1.15;margin-bottom:6px;
+}
+.region-card-desc{
+  font-size:0.76rem;color:rgba(255,255,255,0.75);line-height:1.5;
+}
+
+/* ══════════════════════════════════
+   BEST TIME — horizontal season strip
+   White bg, header on the left, 4 season "chips"
+   laid out in a row on the right (very different
+   layout from a split photo section)
+══════════════════════════════════ */
+.seasons{
+  background:#fff;
+  padding:76px 5%;
+  border-top:1px solid #f0e6da;
+  border-bottom:1px solid #f0e6da;
+}
+.seasons-inner{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:280px 1fr;gap:56px;
+  align-items:start;
+}
+.se-eyebrow{
+  display:block;font-size:10px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:14px;
+}
+.se-title{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:clamp(1.7rem,3vw,2.3rem);
+  color:var(--ink);line-height:1.25;margin-bottom:14px;
+}
+.se-body{
+  font-size:0.88rem;color:var(--ink-muted);line-height:1.75;
+}
+.season-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+}
+.season-chip{
+  padding:0 24px;
+  border-left:1px solid #ece1d3;
+}
+.season-chip:first-child{padding-left:0;border-left:none;}
+.season-icon{margin-bottom:16px;}
+.season-icon svg{width:34px;height:34px;stroke:var(--saffron);fill:none;stroke-width:1.4;}
+.season-months{
+  font-size:10px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:8px;
+}
+.season-name{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:1.15rem;color:var(--ink);margin-bottom:8px;
+}
+.season-desc{
+  font-size:0.78rem;color:var(--ink-muted);line-height:1.55;
+}
+
+/* ══════════════════════════════════
+   WHY INDIA — horizontal stats band
+   Maroon bg strip, 4 columns divided by hairlines,
+   icon on top, bold serif title, muted line below
+══════════════════════════════════ */
+.stats-band{
+  background:var(--maroon);
+  padding:56px 5%;
+}
+.stats-row{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat-item{
+  text-align:center;
+  padding:0 20px;
+  border-left:1px solid rgba(255,255,255,0.16);
+}
+.stat-item:first-child{border-left:none;}
+.stat-icon{
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.stat-icon svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.5;}
+.stat-title{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:1.2rem;color:#fff;margin-bottom:8px;
+}
+.stat-desc{
+  font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.5;
+}
+
+/* ══════════════════════════════════
+   EXPERIENCES — asymmetric mosaic gallery
+   One large feature tile + a column of smaller tiles
+   (distinctly different from a uniform card row)
+══════════════════════════════════ */
+.mosaic{
+  background:var(--sand);
+  padding:80px 5%;
+}
+.mosaic-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;
+  max-width:1180px;margin:0 auto 36px;
+}
+.ms-eyebrow{
+  display:block;font-size:10px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--maroon);margin-bottom:12px;
+}
+.ms-title{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  font-size:clamp(1.8rem,3.4vw,2.6rem);
+  color:var(--ink);line-height:1.2;max-width:480px;
+}
+.ms-note{
+  font-size:0.85rem;color:var(--ink-muted);line-height:1.7;max-width:280px;
+}
+.mosaic-grid{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:repeat(2,220px);
+  gap:14px;
+}
+.mosaic-tile{
+  position:relative;overflow:hidden;border-radius:8px;
+}
+.mosaic-tile.feature{grid-row:span 2;}
+.mosaic-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.6s ease;
+}
+.mosaic-tile:hover img{transform:scale(1.06);}
+.mosaic-tile-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(36,16,22,0.75) 0%, transparent 55%);
+}
+.mosaic-tile-label{
+  position:absolute;left:18px;bottom:16px;right:18px;
+}
+.mosaic-tile-eyebrow{
+  display:block;font-size:9px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--saffron-light);margin-bottom:4px;
+}
+.mosaic-tile-title{
+  font-family:'DM Serif Display',serif;font-weight:400;
+  color:#fff;line-height:1.2;
+}
+.mosaic-tile.feature .mosaic-tile-title{font-size:1.5rem;}
+.mosaic-tile:not(.feature) .mosaic-tile-title{font-size:1.05rem;}
+
+/* ══════════════════════════════════
+   CLOSING LINE — simple centred sign-off before footer
+══════════════════════════════════ */
+.signoff{
+  background:#fff;
+  padding:70px 5%;
+  text-align:center;
+}
+.signoff-line{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.4rem,2.6vw,1.9rem);
+  color:var(--ink);max-width:640px;margin:0 auto 26px;line-height:1.5;
+}
+.signoff-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--maroon);color:#fff;text-decoration:none;
+  padding:14px 32px;border-radius:4px;
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  transition:background 0.2s;
+}
+.signoff-btn:hover{background:var(--maroon-dark);}
+.signoff-btn svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;}
+
+/* ══ FOOTER — exact from dest-thailand.html / dest-bali.html ══ */
+footer{background:#060a2e;padding:60px 5% 30px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.footer-brand img{height:46px;margin-bottom:16px;display:block;}
+.footer-brand p{font-size:0.9rem;color:rgba(255,255,255,0.35);max-width:260px;line-height:1.7;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--gold);margin-top:8px;display:block;}
+.footer-links h5{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links li a{font-size:0.88rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.footer-links li a:hover{color:var(--sky);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p,.footer-bottom span{font-size:0.73rem;color:rgba(255,255,255,0.22);}
+
+/* ══════════════════════════════════
+   TABLET (768–1024px)
+══════════════════════════════════ */
+@media(max-width:1024px){
+  .regions-grid{grid-template-columns:repeat(2,1fr);}
+  .seasons-inner{grid-template-columns:1fr;gap:32px;}
+  .season-row{grid-template-columns:repeat(2,1fr);gap:24px 0;}
+  .season-chip{border-left:none;padding-left:0;}
+  .stats-row{grid-template-columns:repeat(2,1fr);row-gap:28px;}
+  .stat-item:nth-child(3){border-left:none;}
+  .mosaic-grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;}
+}
+
+/* ══════════════════════════════════
+   MOBILE (<768px)
+══════════════════════════════════ */
+@media(max-width:768px){
+  /* nav */
+  nav{padding:0 5%;height:64px;}
+  .nav-logo img{height:42px;}
+  .nav-links{display:none;}
+  .nav-cta-btn{display:none!important;}
+  .hamburger{display:flex;}
+  .mobile-nav{display:flex;}
+
+  /* hero */
+  .hero{align-items:flex-end;min-height:100svh;}
+  .hero-bg{background-position:65% center;}
+  .hero-overlay{background:linear-gradient(to top,rgba(250,244,233,0.94) 0%,rgba(250,244,233,0.55) 50%,transparent 100%);}
+  .hero-content{padding:0 5% 56px;padding-top:0;max-width:100%;}
+  .hero-h1{font-size:clamp(4rem,17vw,6rem);}
+  .hero-sub{max-width:100%;}
+
+  /* regions */
+  .regions{padding:56px 5%;}
+  .regions-grid{grid-template-columns:1fr 1fr;gap:12px;}
+
+  /* seasons */
+  .seasons{padding:56px 5%;}
+  .season-row{grid-template-columns:1fr 1fr;}
+
+  /* stats band */
+  .stats-band{padding:40px 5%;}
+  .stats-row{grid-template-columns:1fr;row-gap:28px;}
+  .stat-item{border-left:none;}
+
+  /* mosaic */
+  .mosaic{padding:56px 5%;}
+  .mosaic-grid{grid-template-columns:1fr;grid-template-rows:none;}
+  .mosaic-tile{height:220px;}
+  .mosaic-tile.feature{grid-row:auto;height:280px;}
+
+  /* signoff */
+  .signoff{padding:52px 5%;}
+
+  /* footer */
+  .footer-top{flex-direction:column;gap:28px;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+@media(max-width:480px){
+  .regions-grid{grid-template-columns:1fr;}
+  .season-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV — exact from dest-thailand.html / dest-bali.html ══ -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="Images/Logo BACKGROUND REMOVED.png" alt="MGE"
+         onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#plan" class="nav-cta-btn">Plan My Trip</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ MOBILE NAV ══ -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+  <a href="why-us.html" class="mobile-nav-link">Why Us</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="#plan" class="mobile-nav-cta mobile-nav-link">Plan My Trip</a>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-welcome">Welcome to</span>
+    <h1 class="hero-h1">INDIA</h1>
+    <span class="hero-island">Land of Wonders</span>
+    <div class="hero-divider-wrap">
+      <div class="hero-divider-line"></div>
+      <!-- lotus / mandala motif -->
+      <svg class="hero-motif" viewBox="0 0 24 24" fill="none" stroke="#d9822b" stroke-width="1.3">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 3 Q14 7 12 9 Q10 7 12 3Z"/>
+        <path d="M12 21 Q14 17 12 15 Q10 17 12 21Z"/>
+        <path d="M3 12 Q7 10 9 12 Q7 14 3 12Z"/>
+        <path d="M21 12 Q17 10 15 12 Q17 14 21 12Z"/>
+      </svg>
+      <div class="hero-divider-line"></div>
+    </div>
+    <p class="hero-sub">Golden deserts, snow-capped peaks, sacred rivers<br>and a thousand living traditions.<br>This is India. Vast, timeless and unforgettable.</p>
+    <a href="#plan" class="hero-btn">
+      Plan My India Journey
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     INDIA IN NUMBERS — horizontal stats band
+══════════════════════════════════ -->
+<section class="stats-band reveal">
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 34 34"><path d="M17 4L4 15h4v13h9V19h0v9h9V15h4L17 4Z"/></svg>
+      </div>
+      <div class="stat-title">40+ Heritage Sites</div>
+      <div class="stat-desc">UNESCO wonders, from the Taj Mahal to Hampi.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 34 34"><path d="M17 4C10 4 6 9 6 15c0 9 11 15 11 15s11-6 11-15c0-6-4-11-11-11Z"/><circle cx="17" cy="15" r="3.5"/></svg>
+      </div>
+      <div class="stat-title">28 States</div>
+      <div class="stat-desc">Each with its own language and culture.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 34 34"><path d="M4 22 Q10 16 17 22 Q24 28 30 22"/><path d="M4 16 Q10 10 17 16 Q24 22 30 16"/></svg>
+      </div>
+      <div class="stat-title">7,500 km Coastline</div>
+      <div class="stat-desc">Sun-soaked beaches on two seas and an ocean.</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 34 34"><path d="M17 5 L26 10 V19 C26 25 22 28 17 30 C12 28 8 25 8 19 V10 Z"/><path d="M13 17 Q17 12 21 17 Q17 22 13 17Z"/></svg>
+      </div>
+      <div class="stat-title">100+ Parks &amp; Reserves</div>
+      <div class="stat-desc">National parks and tiger reserves nationwide.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     REGIONS OF INDIA
+══════════════════════════════════ -->
+<section class="regions reveal">
+  <div class="regions-header">
+    <span class="rg-eyebrow">Explore India</span>
+    <h2 class="rg-title">Four Directions. One Soul.</h2>
+    <p class="rg-sub">From Himalayan trails to backwater villages, every region of India tells a different story.</p>
+  </div>
+  <div class="regions-grid">
+    <div class="region-card">
+      <img src="https://images.unsplash.com/photo-1524613032530-449a5d94c285?w=500&q=85&auto=format&fit=crop" alt="North India — Himalayas and forts">
+      <div class="region-card-overlay"></div>
+      <div class="region-card-body">
+        <span class="region-card-dir">North</span>
+        <div class="region-card-name">Royal Forts &amp; Himalayan Peaks</div>
+        <div class="region-card-desc">Rajasthan's palaces, Delhi's history, the mountains of Himachal.</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=500&q=85&auto=format&fit=crop" alt="South India — temples and backwaters">
+      <div class="region-card-overlay"></div>
+      <div class="region-card-body">
+        <span class="region-card-dir">South</span>
+        <div class="region-card-name">Temples &amp; Tranquil Backwaters</div>
+        <div class="region-card-desc">Kerala's houseboats, Tamil Nadu's temple towns, misty tea hills.</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <img src="Images/ghar.jpg" alt="East India — Varanasi ghats">
+      <div class="region-card-overlay"></div>
+      <div class="region-card-body">
+        <span class="region-card-dir">East</span>
+        <div class="region-card-name">Sacred Ghats &amp; Green Valleys</div>
+        <div class="region-card-desc">Varanasi's ancient rituals, Darjeeling's tea gardens, tribal heartlands.</div>
+      </div>
+    </div>
+    <div class="region-card">
+      <img src="Images/Indian desert.jpg" alt="West India — Goa beaches">
+      <div class="region-card-overlay"></div>
+      <div class="region-card-body">
+        <span class="region-card-dir">West</span>
+        <div class="region-card-name">Sun-Soaked Coasts &amp; Deserts</div>
+        <div class="region-card-desc">Goa's beaches, Gujarat's white salt flats, Mumbai's energy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     BEST TIME TO VISIT — season strip
+══════════════════════════════════ -->
+<section class="seasons reveal">
+  <div class="seasons-inner">
+    <div>
+      <span class="se-eyebrow">Best Time to Visit</span>
+      <h2 class="se-title">A Country of Many Seasons</h2>
+      <p class="se-body">India spans deserts, coasts and mountains — so the "right" season depends on where you're headed. Here's a quick guide.</p>
+    </div>
+    <div class="season-row">
+      <div class="season-chip">
+        <div class="season-icon">
+          <svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="6"/><line x1="17" y1="3" x2="17" y2="7"/><line x1="17" y1="27" x2="17" y2="31"/><line x1="3" y1="17" x2="7" y2="17"/><line x1="27" y1="17" x2="31" y2="17"/></svg>
+        </div>
+        <div class="season-months">Oct – Mar</div>
+        <div class="season-name">Winter</div>
+        <div class="season-desc">Crisp, sunny days — ideal for Rajasthan, Delhi and the plains.</div>
+      </div>
+      <div class="season-chip">
+        <div class="season-icon">
+          <svg viewBox="0 0 34 34"><path d="M6 20 Q17 6 28 20" /><path d="M6 24 Q17 12 28 24"/></svg>
+        </div>
+        <div class="season-months">Apr – Jun</div>
+        <div class="season-name">Summer</div>
+        <div class="season-desc">Hot on the plains, but perfect timing for Himalayan treks.</div>
+      </div>
+      <div class="season-chip">
+        <div class="season-icon">
+          <svg viewBox="0 0 34 34"><path d="M9 14 Q9 8 17 8 Q25 8 25 14 Q29 15 29 20 Q29 24 24 24 L10 24 Q5 24 5 20 Q5 15 9 14Z"/><line x1="12" y1="27" x2="10" y2="31"/><line x1="17" y1="27" x2="15" y2="31"/><line x1="22" y1="27" x2="20" y2="31"/></svg>
+        </div>
+        <div class="season-months">Jul – Sep</div>
+        <div class="season-name">Monsoon</div>
+        <div class="season-desc">Lush greenery — beautiful for Kerala, Goa and the Western Ghats.</div>
+      </div>
+      <div class="season-chip">
+        <div class="season-icon">
+          <svg viewBox="0 0 34 34"><path d="M17 30 Q17 20 17 10"/><path d="M17 10 Q13 7 11 9 Q15 8 17 13"/><path d="M17 10 Q21 7 23 9 Q19 8 17 13"/><path d="M17 20 Q13 17 11 19 Q15 18 17 23"/><path d="M17 20 Q21 17 23 19 Q19 18 17 23"/></svg>
+        </div>
+        <div class="season-months">Sept – Oct</div>
+        <div class="season-name">Post-Monsoon</div>
+        <div class="season-desc">Fresh air and festival season — Diwali, Durga Puja and more.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     EXPERIENCES — mosaic gallery
+══════════════════════════════════ -->
+<section class="mosaic reveal">
+  <div class="mosaic-header">
+    <div>
+      <span class="ms-eyebrow">Things to Do in India</span>
+      <h2 class="ms-title">Moments You'll Carry Home</h2>
+    </div>
+    <p class="ms-note">From dawn safaris to sunset ghats, every day here looks completely different.</p>
+  </div>
+  <div class="mosaic-grid">
+    <div class="mosaic-tile feature">
+      <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=85&auto=format&fit=crop" alt="Taj Mahal sunrise">
+      <div class="mosaic-tile-overlay"></div>
+      <div class="mosaic-tile-label">
+        <span class="mosaic-tile-eyebrow">Heritage</span>
+        <div class="mosaic-tile-title">Sunrise at the Taj Mahal</div>
+      </div>
+    </div>
+    <div class="mosaic-tile">
+      <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=85&auto=format&fit=crop" alt="Kerala backwaters houseboat">
+      <div class="mosaic-tile-overlay"></div>
+      <div class="mosaic-tile-label">
+        <span class="mosaic-tile-eyebrow">Backwaters</span>
+        <div class="mosaic-tile-title">Houseboat Days in Kerala</div>
+      </div>
+    </div>
+    <div class="mosaic-tile">
+      <img src="Images/jaiselmer.jpeg" alt="Rajasthan desert safari">
+      <div class="mosaic-tile-overlay"></div>
+      <div class="mosaic-tile-label">
+        <span class="mosaic-tile-eyebrow">Desert</span>
+        <div class="mosaic-tile-title">Camel Safaris in Jaisalmer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CLOSING SIGN-OFF
+══════════════════════════════════ -->
+<section class="signoff reveal">
+  <p class="signoff-line">"India is not a destination — it's a thousand journeys folded into one."</p>
+  <a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip." class="signoff-btn">
+    Start Planning
+    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+</section>
+
+<!-- ══ FOOTER — exact from dest-thailand.html / dest-bali.html ══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <span class="footer-tagline">Not Just Planned — Personalized!</span>
+    </div>
+    <div class="footer-links">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="why-us.html">Why Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Destinations</h5>
+      <ul>
+        <li><a href="dest-thailand.html">Thailand</a></li>
+        <li><a href="dest-dubai.html">Dubai</a></li>
+        <li><a href="dest-usa.html">United States</a></li>
+        <li><a href="dest-bali.html">Bali</a></li>
+        <li><a href="dest-india.html">Domestic India</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://wa.me/917410747800" target="_blank">WhatsApp Us</a></li>
+        <li><a href="tel:+917410747800">Call Us</a></li>
+        <li><a href="mailto:escapes@mahaveerglobal.in">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Mahaveer Global Escapes. All rights reserved.</p>
+    <span>Designed with ✦ for dreamers</span>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// REVEAL ON SCROLL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

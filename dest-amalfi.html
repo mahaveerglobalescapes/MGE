@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amalfi Coast — Mediterranean Dream | Mahaveer Global Escapes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a237e;--sky:#5c7dd4;--white:#fff;--cream:#fbf7ef;--dark:#0d1547;--gold:#c8a96e;--light-sky:#dde4f5;--text-dark:#1a1a2e;--text-muted:#6b7280;--teal:#1a7a7a;--teal-mid:#1e8f8f;--teal-light:#2ab5b5;--red:#d32f2f;--amalfi:#155e63;--lemon:#e7bd42;--sand:#f7f1e7;--ink:#17272a;--muted:#6d7775}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:#fff;overflow-x:hidden}
+/* NAV — preserved exactly from reference */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;height:72px;background:transparent;transition:background 0.4s}nav.scrolled{background:rgba(215,219,240,.92);backdrop-filter:blur(16px)}.nav-logo{cursor:default;display:flex;align-items:center;gap:10px}.nav-logo img{height:48px;object-fit:contain}.nav-logo-text{color:white;font-weight:800;font-size:1rem;letter-spacing:.06em}.nav-links{display:flex;gap:32px;list-style:none;align-items:center}.nav-links a{color:#1a2380;text-decoration:none;font-size:13.5px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase;opacity:.85;transition:opacity .2s}.nav-links a:hover{opacity:1}.nav-cta-btn{background:var(--teal)!important;color:#fff!important;border:none!important;padding:10px 24px!important;border-radius:24px!important;font-size:13px!important;font-weight:700!important;letter-spacing:.1em!important;text-transform:uppercase!important;opacity:1!important;transition:background .2s!important}.nav-cta-btn:hover{background:#155f5f!important}.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;outline:none;z-index:1100}.hamburger span{width:24px;height:1.5px;background:white;display:block;transition:all .3s}.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}.mobile-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(13,21,71,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s}.mobile-nav.open{opacity:1;pointer-events:all}.mobile-nav a{color:#fff;text-decoration:none;font-size:1.3rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85}.mobile-nav a:hover{opacity:1}.mobile-nav-cta{background:var(--teal);color:#fff!important;padding:13px 36px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:1!important;margin-top:8px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+.hero{position:relative;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:center}.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=2200&q=90&auto=format&fit=crop') center/cover no-repeat;animation:slowZoom 20s ease-in-out infinite alternate}@keyframes slowZoom{from{transform:scale(1.03)}to{transform:scale(1.09)}}.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,43,45,.72) 0%,rgba(17,43,45,.38) 42%,rgba(17,43,45,.04) 76%)}.hero-content{position:relative;z-index:2;padding:72px 6% 0;max-width:700px;color:#fff;animation:fadeUp .9s ease both}@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}.hero-welcome{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2rem;font-weight:400;color:#f4d878;margin-bottom:2px;letter-spacing:.04em}.hero-h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(4.7rem,11vw,9rem);line-height:.86;letter-spacing:-.025em;margin-bottom:14px}.hero-kicker{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:#fff;margin-bottom:16px}.hero-rule{width:150px;height:1px;background:#f4d878;margin-bottom:20px}.hero-sub{font-size:1rem;font-weight:400;color:rgba(255,255,255,.88);line-height:1.7;margin-bottom:28px;max-width:470px}.hero-btn,.final-btn{display:inline-flex;align-items:center;gap:10px;background:var(--lemon);color:#173336;text-decoration:none;padding:14px 28px;border-radius:3px;font-family:'Inter',sans-serif;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;transition:transform .2s,background .2s}.hero-btn:hover,.final-btn:hover{transform:translateY(-2px);background:#f0cf58}.hero-btn svg,.final-btn svg{width:16px;height:16px;stroke:#173336;fill:none;stroke-width:2.5}
+.intro{padding:100px 7%;background:var(--cream)}.intro-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1fr 1.15fr;gap:90px;align-items:center}.eyebrow{font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--amalfi);margin-bottom:14px}.intro h2,.experience h2,.villages h2,.food h2,.final h2{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:400;line-height:1.12;color:var(--ink);margin-bottom:20px}.intro p,.food p{font-size:.95rem;line-height:1.85;color:var(--muted);max-width:540px}.intro-note{border-left:2px solid var(--lemon);padding-left:26px;margin-top:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:#34494a;line-height:1.5}.intro-photo{height:520px;position:relative}.intro-photo img{width:100%;height:100%;object-fit:cover}.intro-photo::after{content:'AMALFI COAST · ITALY';position:absolute;bottom:18px;left:18px;color:#fff;font:700 9px Inter,sans-serif;letter-spacing:.22em}
+.experience{padding:100px 5%;background:#fff}.section-head{max-width:1180px;margin:0 auto 44px;display:flex;justify-content:space-between;gap:30px;align-items:end}.section-head p{max-width:360px;font-size:.86rem;line-height:1.7;color:var(--muted)}.experience-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.35fr .8fr .8fr;grid-template-rows:270px 270px;gap:14px}.experience-card{position:relative;overflow:hidden}.experience-card:first-child{grid-row:span 2}.experience-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.experience-card:hover img{transform:scale(1.06)}.experience-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,39,40,.75),transparent 60%)}.experience-label{position:absolute;z-index:2;left:20px;bottom:18px;color:#fff}.experience-label small{display:block;color:#f4d878;font:800 9px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;margin-bottom:5px}.experience-label strong{font:400 1.25rem 'DM Serif Display',serif}
+.villages{background:var(--sand);padding:100px 5%}.villages-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.village{background:#fff}.village img{width:100%;height:280px;object-fit:cover;display:block}.village-body{padding:22px}.village h3{font:400 1.5rem 'DM Serif Display',serif;color:var(--ink);margin-bottom:8px}.village p{font-size:.8rem;color:var(--muted);line-height:1.65}.village span{display:block;font:800 9px Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--amalfi);margin-bottom:8px}
+.food{padding:100px 7%;background:#fff}.food-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}.food-photo{height:520px}.food-photo img{width:100%;height:100%;object-fit:cover}.food-list{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:0}.food-item{padding:18px 0;border-top:1px solid #e6e1d7}.food-item:nth-child(odd){margin-right:25px}.food-item strong{display:block;font:400 1.25rem 'DM Serif Display',serif;color:var(--ink);margin-bottom:5px}.food-item span{font-size:.76rem;line-height:1.5;color:var(--muted)}
+.final{padding:105px 5%;text-align:center;background:#173f42;color:#fff}.final h2{color:#fff;max-width:700px;margin:0 auto 18px}.final p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;line-height:1.5;color:rgba(255,255,255,.72);max-width:650px;margin:0 auto 28px}
+/* FOOTER — preserved exactly from reference */
+footer{background:#060a2e;padding:60px 5% 30px}.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px}.footer-brand img{height:46px;margin-bottom:16px;display:block}.footer-brand p{font-size:.9rem;color:rgba(255,255,255,.35);max-width:260px;line-height:1.7}.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--gold);margin-top:8px;display:block}.footer-links h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:14px}.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:8px}.footer-links li a{font-size:.88rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}.footer-links li a:hover{color:var(--sky)}.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}.footer-bottom p,.footer-bottom span{font-size:.73rem;color:rgba(255,255,255,.22)}
+@media(max-width:1024px){.intro-grid,.food-grid{grid-template-columns:1fr;gap:45px}.intro-photo,.food-photo{height:450px}.experience-grid{grid-template-columns:1fr 1fr;grid-template-rows:260px 260px}.experience-card:first-child{grid-row:span 2}.villages-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){nav{padding:0 5%;height:64px}.nav-logo img{height:42px}.nav-links{display:none}.nav-cta-btn{display:none!important}.hamburger{display:flex}.mobile-nav{display:flex}.hero{align-items:flex-end;min-height:100svh}.hero-bg{background-position:62% center}.hero-overlay{background:linear-gradient(to top,rgba(17,43,45,.9) 0%,rgba(17,43,45,.45) 55%,transparent 100%)}.hero-content{padding:0 5% 55px;max-width:100%}.hero-h1{font-size:clamp(4rem,17vw,6rem)}.hero-sub{max-width:100%}.intro,.experience,.villages,.food{padding:68px 5%}.intro-grid,.food-grid{gap:35px}.intro-photo,.food-photo{height:390px}.section-head{display:block;margin-bottom:30px}.section-head p{margin-top:15px}.experience-grid{grid-template-columns:1fr;grid-template-rows:none}.experience-card,.experience-card:first-child{height:250px;grid-row:auto}.experience-card:first-child{height:330px}.villages-grid{grid-template-columns:1fr}.village img{height:250px}.food-list{grid-template-columns:1fr}.food-item:nth-child(odd){margin-right:0}.final{padding:72px 5%}.footer-top{flex-direction:column;gap:28px}.footer-bottom{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<!-- ══ NAV — exact from dest-thailand.html / dest-bali.html ══ -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="Images/Logo BACKGROUND REMOVED.png" alt="MGE"
+         onerror="this.style.display='none';this.parentElement.innerHTML+='<span class=\'nav-logo-text\'>MGE</span>'">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="experiences.html">Experiences</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip." class="nav-cta-btn">Plan My Trip</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ MOBILE NAV ══ -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+  <a href="why-us.html" class="mobile-nav-link">Why Us</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="https://wa.me/917410747800?text=Hi!%20I%20want%20to%20plan%20a%20trip." class="mobile-nav-cta mobile-nav-link">Plan My Trip</a>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero"><div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-content"><span class="hero-welcome">Welcome to</span><h1 class="hero-h1">AMALFI<br>COAST</h1><div class="hero-kicker">Italy · Mediterranean Dream</div><div class="hero-rule"></div><p class="hero-sub">Cliffside villages, lemon-scented lanes and impossibly blue seas. A coast made for slow mornings, long lunches and unforgettable sunsets.</p><a href="#plan" class="hero-btn">Plan My Amalfi Escape <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></section>
+<section class="intro reveal"><div class="intro-grid"><div><span class="eyebrow">The Coastline</span><h2>Where the mountains meet the Mediterranean.</h2><p>The Amalfi Coast is not a destination you rush through. It is a collection of little moments — winding roads above the sea, church bells in hillside towns, fresh lemons piled outside family-run trattorias, and evenings that seem to last forever.</p><p class="intro-note">“Come for the views. Stay for the feeling.”</p></div><div class="intro-photo"><img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1000&q=88&auto=format&fit=crop" alt="Amalfi Coast cliffs and sea"></div></div></section>
+<section class="experience reveal"><div class="section-head"><div><span class="eyebrow">The Amalfi Way</span><h2>Days that deserve to be savoured.</h2></div><p>Forget ticking off a list. The best of the coast is found between the famous sights.</p></div><div class="experience-grid"><div class="experience-card"><img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=1000&q=88&auto=format&fit=crop" alt="Boat on the Amalfi Coast"><div class="experience-label"><small>On the water</small><strong>Set sail at golden hour</strong></div></div><div class="experience-card"><img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=700&q=88&auto=format&fit=crop" alt="Positano village"><div class="experience-label"><small>Postcard views</small><strong>Wander Positano</strong></div></div><div class="experience-card"><img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?w=700&q=88&auto=format&fit=crop" alt="Italian food"><div class="experience-label"><small>Long lunches</small><strong>Eat like a local</strong></div></div><div class="experience-card"><img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=700&q=88&auto=format&fit=crop" alt="Hiking coastal trail"><div class="experience-label"><small>Beyond the road</small><strong>Walk the cliff paths</strong></div></div><div class="experience-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=88&auto=format&fit=crop" alt="Mediterranean sunset"><div class="experience-label"><small>After dark</small><strong>Chase the sunset</strong></div></div></div></section>
+<section class="villages reveal"><div class="section-head"><div><span class="eyebrow">Three moods of the coast</span><h2>Choose your corner of paradise.</h2></div><p>Each village has its own rhythm — and together they make the coast unforgettable.</p></div><div class="villages-grid"><article class="village"><img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&q=88&auto=format&fit=crop" alt="Positano"><div class="village-body"><span>Iconic</span><h3>Positano</h3><p>Colourful houses tumble down the cliffside, with boutiques, beach clubs and views at every turn.</p></div></article><article class="village"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=88&auto=format&fit=crop" alt="Ravello"><div class="village-body"><span>Elegant</span><h3>Ravello</h3><p>High above the sea, gardens, villas and quiet piazzas offer a slower, more romantic perspective.</p></div></article><article class="village"><img src="https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=88&auto=format&fit=crop" alt="Amalfi town"><div class="village-body"><span>Authentic</span><h3>Amalfi</h3><p>The historic heart of the coast — perfect for wandering lanes, discovering lemon treats and lingering by the water.</p></div></article></div></section>
+<section class="food reveal"><div class="food-grid"><div class="food-photo"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=1000&q=88&auto=format&fit=crop" alt="Italian pasta on a table"></div><div><span class="eyebrow">A Taste of the Coast</span><h2>Simple ingredients. Serious pleasure.</h2><p>Food here follows the landscape: bright lemons, tomatoes warmed by the sun, handmade pasta, local seafood and olive oil. Leave room for dessert — and, naturally, something lemony.</p><div class="food-list"><div class="food-item"><strong>Lemon Delizia</strong><span>Amalfi's signature little lemon cake.</span></div><div class="food-item"><strong>Fresh Seafood</strong><span>Catch of the day, straight from the Tyrrhenian Sea.</span></div><div class="food-item"><strong>Handmade Pasta</strong><span>Slow lunches with local sauces and wine.</span></div><div class="food-item"><strong>Granita</strong><span>Cold, bright and perfect after a beach day.</span></div></div></div></div></section>
+<section class="final reveal" id="plan"><h2>Your Amalfi story starts here.</h2><p>Let us turn the famous coastline into a journey that feels entirely yours.</p><a href="#" class="final-btn">Start Planning <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></section>
+<!-- ══ FOOTER — exact from dest-thailand.html / dest-bali.html ══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="MGE_Logo__original_-removebg-preview.png" alt="MGE" onerror="this.style.display='none'">
+      <p>Crafting bespoke journeys across the world — personalised for your story, your people, and your perfect moment.</p>
+      <span class="footer-tagline">Not Just Planned — Personalized!</span>
+    </div>
+    <div class="footer-links">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="why-us.html">Why Us</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Destinations</h5>
+      <ul>
+        <li><a href="dest-thailand.html">Thailand</a></li>
+        <li><a href="dest-dubai.html">Dubai</a></li>
+        <li><a href="dest-usa.html">United States</a></li>
+        <li><a href="dest-bali.html">Bali</a></li>
+        <li><a href="dest-india.html">Domestic India</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://wa.me/917410747800" target="_blank">WhatsApp Us</a></li>
+        <li><a href="tel:+917410747800">Call Us</a></li>
+        <li><a href="mailto:escapes@mahaveerglobal.in">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Mahaveer Global Escapes. All rights reserved.</p>
+    <span>Designed with ✦ for dreamers</span>
+  </div>
+</footer>
+<script>
+const nav=document.getElementById('mainNav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+const hamburger=document.getElementById('hamburger');const mobileNav=document.getElementById('mobileNav');hamburger.addEventListener('click',()=>{const open=mobileNav.classList.toggle('open');hamburger.classList.toggle('open',open);document.body.style.overflow=open?'hidden':''});
+document.querySelectorAll('.mobile-nav-link').forEach(l=>l.addEventListener('click',()=>{mobileNav.classList.remove('open');hamburger.classList.remove('open');document.body.style.overflow=''}));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
