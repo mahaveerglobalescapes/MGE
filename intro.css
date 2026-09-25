@@ -1,0 +1,294 @@
+/* =========================================================
+   MAHAVEER GLOBAL ESCAPES
+   CINEMATIC WEBSITE INTRO
+   ========================================================= */
+
+
+/* =========================================================
+   PREVENT THE WEBSITE FROM SCROLLING
+   WHILE INTRO IS PLAYING
+   ========================================================= */
+
+body.mge-intro-active {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN INTRO SCREEN
+   ========================================================= */
+
+#mge-intro {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    background: rgb(2, 18, 67);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999999;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transition:
+        opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 1.1s ease;
+}
+
+
+/* =========================================================
+   INTRO CONTENT CONTAINER
+   ========================================================= */
+
+.mge-intro-content {
+
+    position: relative;
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   GREETING LINES
+   ========================================================= */
+
+.mge-intro-line {
+
+    position: relative;
+
+    width: 100%;
+
+    margin: 2px 0;
+
+    opacity: 0;
+
+    transform: translateY(18px);
+
+    font-family: 'Acumin-Pro';
+
+    font-size: clamp(2rem, 5vw, 4.5rem);
+
+    font-weight: 200;
+
+    line-height: 1.50;
+
+    letter-spacing: 0.02em;
+
+    color: #ffffff;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* =========================================================
+   ACTIVE GREETING
+   ========================================================= */
+
+.mge-intro-line.active {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   BRAND NAME
+   ========================================================= */
+
+.mge-intro-brand {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width: 90%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.96);
+
+    opacity: 0;
+
+    font-family: 'DM Sans', sans-serif;
+
+    font-size: clamp(1rem, 2vw, 1.5rem);
+
+    font-weight: 600;
+
+    letter-spacing: 0.28em;
+
+    text-transform: uppercase;
+
+    color: #ffffff;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* =========================================================
+   ACTIVE BRAND NAME
+   ========================================================= */
+
+.mge-intro-brand.active {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+
+/* =========================================================
+   GOLD LINE UNDER BRAND
+   ========================================================= */
+
+.mge-intro-brand::after {
+
+    content: "";
+
+    display: block;
+
+    width: 45px;
+
+    height: 1px;
+
+    margin: 18px auto 0;
+
+    background: #c8a96e;
+
+    transform: scaleX(0);
+
+    transition:
+        transform 0.8s ease 0.25s;
+}
+
+
+/* =========================================================
+   ACTIVATE GOLD LINE
+   ========================================================= */
+
+.mge-intro-brand.active::after {
+
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   HIDE INTRO
+   ========================================================= */
+
+#mge-intro.mge-hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .mge-intro-content {
+
+        width: 92%;
+    }
+
+
+    .mge-intro-line {
+
+        font-size: clamp(2rem, 10vw, 3rem);
+
+        line-height: 1.08;
+
+        margin: 1px 0;
+    }
+
+
+    .mge-intro-brand {
+
+        font-size: 0.82rem;
+
+        letter-spacing: 0.20em;
+    }
+
+
+    .mge-intro-brand::after {
+
+        margin-top: 14px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .mge-intro-line {
+
+        font-size: 1.9rem;
+    }
+
+
+    .mge-intro-brand {
+
+        font-size: 0.72rem;
+
+        letter-spacing: 0.16em;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #mge-intro,
+    .mge-intro-line,
+    .mge-intro-brand,
+    .mge-intro-brand::after {
+
+        transition: none !important;
+    }
+}
