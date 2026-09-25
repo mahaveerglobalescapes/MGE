@@ -66,21 +66,21 @@
             <!-- GREETING 1 -->
 
             <div class="mge-intro-line">
-                Hello
+                Hello,
             </div>
 
 
             <!-- GREETING 2 -->
 
             <div class="mge-intro-line">
-                Jai Jinendra
+                Jai Jinendra 🙏🏻
             </div>
 
 
             <!-- GREETING 3 -->
 
             <div class="mge-intro-line">
-                Mahaveer Pranam
+                Mahaveer Pranam 🙏🏻
             </div>
 
 
@@ -149,13 +149,13 @@
            TIMELINE
 
            0.20 sec
-           Hello
+           Hello,
 
            0.70 sec
-           Jai Jinendra
+           Jai Jinendra 🙏🏻
 
            0.120 sec
-           Mahaveer Pranam
+           Mahaveer Pranam 🙏🏻
 
            2.20 sec
            Greetings disappear
